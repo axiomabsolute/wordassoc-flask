@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/foundation.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/game.css') }}">
+	</head>
+    <body>
+
+        <nav class="top-bar" data-options="is_hover:false">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">Title</a></h1>
+                </li>
+            </ul>
+            <section class="top-bar-section"></section>
+        </nav>
+
+        <div class="main-content">
+            {% block body %}{% endblock %}
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+    </body>
+</html>

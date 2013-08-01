@@ -1,0 +1,55 @@
+.game {
+
+}
+
+.top-bar {
+    max-height: 10vh;
+}
+
+.answer-block {
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
+
+.question-block {
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
+
+
+
+/* Media queries & Layout */
+@media all and (orientation: landscape){
+    .answer-block {
+        height: 39vh;
+        width: 21vw;
+        float: right;
+        margin: 2vh 2vw;
+        padding-top: 15vh;
+    }
+
+    .question-block {
+        height: 86vh;
+        width: 48vw;
+        float: left;
+        margin-left: 2vw;
+    }
+}
+
+@media all and (orientation: portrait){
+    .answer-block {
+        height: 20vh;
+        width: 46vw;
+        margin: 2vh 2vw;
+        float: left;
+        padding-top: 10vh;
+    }
+
+    .question-block {
+        height: 36vh;
+        width: 96vw;
+        margin: 2vh 2vw;
+    }
+}
