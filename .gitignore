@@ -2,3 +2,5 @@
 *.pyc
 tags
 venv/*
+.DS_STORE
+.sass-cache

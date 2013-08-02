@@ -1,55 +1,68 @@
-.game {
-
-}
-
+/* Variables */
+/* Mixins */
+/* Semantic Elements */
 .top-bar {
-    max-height: 10vh;
-}
+  max-height: 10vh; }
 
 .answer-block {
-    text-align: center;
-    border: 2px solid gray;
-    border-radius: 4px;
-}
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 4px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .question-block {
-    text-align: center;
-    border: 2px solid gray;
-    border-radius: 4px;
-}
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 4px; }
 
+.tech-block, .start-block {
+  text-align: center;
+  height: 18.5vh;
+  width: 21vw;
+  margin: 2vh 2vw;
+  float: left;
+  padding-top: 9vh; }
 
+.tech-block {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.start-block {
+  background: black;
+  color: white; }
 
 /* Media queries & Layout */
-@media all and (orientation: landscape){
-    .answer-block {
-        height: 39vh;
-        width: 21vw;
-        float: right;
-        margin: 2vh 2vw;
-        padding-top: 15vh;
-    }
+@media all and (orientation: landscape) {
+  .answer-block {
+    height: 39vh;
+    width: 21vw;
+    float: right;
+    margin: 2vh 2vw;
+    padding-top: 15vh; }
 
-    .question-block {
-        height: 86vh;
-        width: 48vw;
-        float: left;
-        margin-left: 2vw;
-    }
-}
+  .question-block {
+    height: 86vh;
+    width: 48vw;
+    float: left;
+    margin-left: 2vw; } }
+@media all and (orientation: portrait) {
+  .answer-block {
+    height: 20vh;
+    width: 46vw;
+    margin: 2vh 2vw;
+    float: left;
+    padding-top: 10vh; }
 
-@media all and (orientation: portrait){
-    .answer-block {
-        height: 20vh;
-        width: 46vw;
-        margin: 2vh 2vw;
-        float: left;
-        padding-top: 10vh;
-    }
-
-    .question-block {
-        height: 36vh;
-        width: 96vw;
-        margin: 2vh 2vw;
-    }
-}
+  .question-block {
+    height: 36vh;
+    width: 96vw;
+    margin: 2vh 2vw; } }

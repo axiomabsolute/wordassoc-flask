@@ -1,3 +1,5 @@
+{# The if statements check to see if the request is an Ajax request.  Ajax requests don't include the header/footer #}
+{% if not is_ajax %}
 <!doctype html>
 <html>
 	<head>
@@ -16,9 +18,12 @@
         </nav>
 
         <div class="main-content">
+{% endif %}
             {% block body %}{% endblock %}
+{% if not is_ajax %}
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="{{ url_for('static', filename='js/game.js') }}"></script>
     </body>
 </html>
+{% endif %}
