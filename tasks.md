@@ -30,3 +30,7 @@
     * Technologies used
     * Colormap
     * Reports
+1. Write little script for getting everything up and running to work
+    * Start python server
+    * Run sass compiler in watch mode
+    * Open up a vim and scratch terminal
