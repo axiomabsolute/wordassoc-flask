@@ -34,7 +34,11 @@
   -khtml-user-select: none;
   -moz-user-select: moz-none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  opacity: .5; }
+
+.tech-block.selected {
+  opacity: 1.0; }
 
 .start-block {
   background: black;

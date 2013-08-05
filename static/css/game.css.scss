@@ -52,6 +52,11 @@ $four-by-four-block-margin-horiz: 2vw;
 
 .tech-block {
     @include noselect;
+    opacity: .5;
+}
+
+.tech-block.selected {
+    opacity: 1.0;
 }
 
 .start-block {
