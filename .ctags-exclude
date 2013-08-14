@@ -1,0 +1,9 @@
+tags
+venv/*
+static/js/foundation/*
+static/js/foundation.min.js
+static/js/vendor/*
+static/css/foundation.css
+static/css/foundation.min.css
+static/css/normalize.css
+

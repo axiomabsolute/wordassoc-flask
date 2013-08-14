@@ -1,6 +1,8 @@
 // Going to need to resize rows in JavaScript to make this responsive.  Annoying.
 (function(){
 
+    var answers = [];
+
     // Helper funciton to start the timer
     function startTimer(duration, callback){
         $('#timer-region').animate({'width':'0%'}, duration, 'linear', callback);
@@ -44,14 +46,63 @@
     // On start, get the selected technologies, render the game, and start the timer.
     $(document).on('click', '#start-block', function(){
         var selectedTechs = $('.tech-block.selected').map(function(i,e){return $(e).text()}).toArray();
+        var questions = {};
+        var answers = [];
+        var index = 1;
         $.get('/game', {"techs": selectedTechs}, function(data, stat, xhr){
-            console.log(data);
-            $('.main-content').html(data);
+            questions = data;
+            // Render base template
+            renderBaseGameTemplate();
+            // Render first question
+            renderQuestion(questions["questions"][0]);
             // Start the timer
-            startTimer(25000,function(){console.log("Done!");});
+            startTimer(25000,function(){console.log("Done!");console.log(answers);$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3>');/* Display finished modal; disable answers; collect answers, and request report*/});
+
+
+            $(document).on('click', '.answer-block', function() {
+                // Store the answer
+                console.log("The user answered " + $(this).html());
+                answers.push($(this).html());
+                // Render the next question
+                renderQuestion(questions["questions"][index]);
+                // Increment index
+                index = index + 1;
+                // If index is getting close to the end, get more questions
+                if (index >= questions["questions"].length - 3) {
+                    console.log("getting close to running out......");
+                }
+                if (index === questions["questions"].length) {
+                    index = 0;
+                }
+            });
         });
     });
 
     /* Game */
     // Show "Ready", "Start", then start the game.
+
+
+    // Helper functions
+    function renderBaseGameTemplate(){
+        // Compiled via doT; fix this.
+        var out='<div class="game"> <div class="question-block"> <div class="timer"><div class="progress radius"><span id="timer-region" class="meter"></span></div></div> <hr> <div class="question"><h3></h3></div> <div class="notifications"></div> </div> <div class="answers"> </div></div>';
+        $('.main-content').html(out);
+    }
+
+    function renderQuestion(question) {
+        // Generate question section replacement.
+        var questionText = getQuestionText(question);
+        // Generate answer portion replacement.
+        var answerHtml = renderAnswersToHtml(question);
+        // Replace respective sections
+        $('.question h3').html(questionText);
+        $('.answers').html(answerHtml);
+    }
+
+    function getQuestionText(question){
+        return question.question;
+    }
+
+    function renderAnswersToHtml(it /**/) { var out='';var arr1=it.options;if(arr1){var value,index=-1,l1=arr1.length-1;while(index<l1){value=arr1[index+=1];out+=' <div class="answer-block">'+( value )+'</div>';} } return out; }
+
 }());
