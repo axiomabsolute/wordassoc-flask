@@ -1,0 +1,268 @@
+{"questions": [
+    [
+        {
+            "question_id" : "c26196df6934cc3aa08311aa35c61346",
+            "question_text": "HEAD~2",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+        },
+        {
+			"question_id" : "",
+            "question_text": "branch",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+			"question_id" : "",
+            "question_text": "checkout",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+			"question_id" : "",
+            "question_text": "commit",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+			"question_id" : "",
+            "question_text": "fetch",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+			"question_id" : "",
+            "question_text": "blame",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+			"question_id" : "",
+            "question_text": "diff",
+            "question_answer": "git",
+            "question_type": "snippetToTech"
+    	},
+        {
+            "question_id" : "",
+            "question_text": "[x for x in range(12)]",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "lambda x: x+3",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "'Hello'[:2]",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "if __name__=='__main__':",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "[(x,x+1) for x in range(1,6,2)]",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "def infinite\n\tx=1\n\tyield x\n\tx=x+1",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "if....elif....else....",
+            "question_answer": "python",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "===",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "document.getElementById(foo)",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "new XMLHTTPRequest()",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Object.create(foo);",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "foo.prototype={bar:'bar'",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "(function(){...}());",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "JSON",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "1=='1'",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "ECMAScript",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "CoffeeScript",
+            "question_answer": "javascript",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "(1:3:21).*2",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "[1,2;3,4;5,6;]",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "if... true... elseif... false... else... end",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "[1,2;3,4;]*[5,6;7,8;]",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "[1,2]",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "[1,2;3,4;]^2",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "load data.dat",
+            "question_answer": "matlab",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "type erasure",
+            "question_answer": "java",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "package org.foo",
+            "question_answer": "java",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "throws",
+            "question_answer": "java",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "oracle",
+            "question_answer": "java",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "JVM",
+            "question_answer": "java",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "LINQ",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "async/await",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "from n in numbers\n\twhere n<5\n\tselect n;",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "int?",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "public partial class",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "namespace org.foo",
+            "question_answer": "c#",
+            "question_type": "snippetToTech"
+        },
+        {
+            "question_id" : "",
+            "question_text": "",
+            "question_answer": "C++",
+            "question_type": "snippetToTech"
+        },
+    ]
+]}
