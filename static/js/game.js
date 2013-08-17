@@ -56,12 +56,12 @@
             // Render first question
             renderQuestion(questions["questions"][0]);
             // Start the timer
-            startTimer(25000,function(){console.log("Done!");console.log(answers);$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3>');/* Display finished modal; disable answers; collect answers, and request report*/});
+            startTimer(60000,function(){console.log("Done!");console.log(answers);$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3>');/* Display finished modal; disable answers; collect answers, and request report*/});
 
 
             $(document).on('click', '.answer-block', function() {
                 // Store the answer
-                console.log("The user answered " + $(this).html());
+                console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index-1]["answer"]);
                 answers.push($(this).html());
                 // Render the next question
                 renderQuestion(questions["questions"][index]);

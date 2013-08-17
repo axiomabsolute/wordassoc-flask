@@ -122,8 +122,24 @@ def getTechsForUser(email):
     return technologies
 
 def generateQuestions(techs):
+    """
+    This is really not a great way of generating the questions.  The likelihood of a repeat question is very
+    high, but the options will likely be different at least.  Might be a good idea to sample + filter first,
+    then randomly select to fill up the space.
+    """
     questions = []
-    while len(questions) < 25:
+    questions_sample = sample(question_bank["questions"], 60)
+    for q in questions_sample:
+        if q["question_type"] == "snippetToTech":
+            if len(techs)<4:
+                continue
+            if q["answer"] not in techs:
+                continue
+        q = q.copy()
+        q["options"] = generateAnswers(q)
+        questions.append(q)
+    # Make sure we get at least 60 questions.
+    while len(questions) < 60:
         question = choice(question_bank["questions"])
         if question["question_type"] == "snippetToTech":
             if len(techs)<4:
@@ -134,11 +150,6 @@ def generateQuestions(techs):
         question["options"] = generateAnswers(question)
         questions.append(question)
     return questions
-    # Pick a random question
-    # skip snippetToTech if they don't have enough techs
-    # skip snippetToTech if it's not one of their techs
-    # Generate answers
-    # Add to questions
 
 if __name__ == '__main__':
     app.debug = True
