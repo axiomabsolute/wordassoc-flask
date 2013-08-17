@@ -1,4 +1,4 @@
-{"questions": [
+question_bank = {"questions":
     [
         {
             "question_id" : "c26196df6934cc3aa08311aa35c61346",
@@ -260,9 +260,200 @@
         },
         {
             "question_id" : "",
-            "question_text": "",
-            "question_answer": "C++",
-            "question_type": "snippetToTech"
+            "question_text": "filesystem",
+            "question_answer": "tree",
+            "question_type": "everydayDataStructs"
         },
-    ]
-]}
+        {
+            "question_id" : "",
+            "question_text": "family geneology",
+            "question_answer": "tree",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "order of deck of cards",
+            "question_answer": "list",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "dictionary",
+            "question_answer": "map",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "phone book",
+            "question_answer": "tree",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "people you know",
+            "question_answer": "set",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "bookmarks",
+            "question_answer": "set",
+            "question_type": "everydayDataStructs"
+        },
+        {
+            "question_id" : "",
+            "question_text": "bubble",
+            "question_answer": "sort",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "merge",
+            "question_answer": "sort",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "quick",
+            "question_answer": "sort",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "radix",
+            "question_answer": "sort",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "binary",
+            "question_answer": "search",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Dijkstra's",
+            "question_answer": "search",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "A*",
+            "question_answer": "search",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Newton's method",
+            "question_answer": "numeric",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "simplex method",
+            "question_answer": "numeric",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Runge-Kutta method",
+            "question_answer": "numeric",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "PageRank",
+            "question_answer": "machine learning",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "k-means",
+            "question_answer": "machine learning",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "support vector machine",
+            "question_answer": "machine learning",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "neural network",
+            "question_answer": "machine learning",
+            "question_type": "algorithmToType"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Foo implements Bar",
+            "question_answer": "interface",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Foo extends Bar",
+            "question_answer": "inheritance",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "Foo foo = new Foo();",
+            "question_answer": "constructor",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "public void foo(){...}\npublic void foo(int bar){...}",
+            "question_answer": "overloading",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "public void foo(){\n\tsuper();\n...\n}",
+            "question_answer": "overriding",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "private int foo;\npublic int getFoo(){\n\treturn this.foo;\n}",
+            "question_answer": "encapsulation",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "class Dog extends Animal {...}\npublic void speak(Animal animal){...}\nspeak(new Dog());",
+            "question_answer": "polymorphism",
+            "question_type": "snippetToOODConcept"
+        },
+        {
+            "question_id" : "",
+            "question_text": "public int length(List lst){\n\tif (lst.head == null){return 0;}\n\treturn 1 + length(lst.tail);\n}",
+            "question_answer": "recursion",
+            "question_type": "generalProgrammingPrinciples"
+        },
+        {
+            "question_id" : "",
+            "question_text": "public T head(List<T> lst){ return lst.get(0);}",
+            "question_answer": "generic types",
+            "question_type": "generalProgrammingPrinciples"
+        },
+        {
+            "question_id" : "",
+            "question_text": "for(int foo : bar){...}",
+            "question_answer": "iteration",
+            "question_type": "generalProgrammingPrinciples"
+        },
+        {
+            "question_id" : "",
+            "question_text": "int foo;",
+            "question_answer": "type declaration",
+            "question_type": "generalProgrammingPrinciples"
+        }
+    ],
+    "algorithm-types": ["search", "sort", "numeric", "machine learning"],
+    "data-structures": ["tree", "list", "map", "set"],
+    "ood-concepts": ["interface", "inheritance", "constructor", "overloading", "overriding", "encapsulation", "polymorphism"],
+    "general-programming-principles": ["generic types", "recursion", "iteration", "type declaration"],
+    "technologies": ["git", "java", "python", "javascript", "c#", "c/c++", "matlab"]
+}

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, abort, jsonify
 from random import sample
+from questions import question_bank
 app = Flask(__name__)
 
 # Sample test data
@@ -31,6 +32,39 @@ questions["questions"].append({
             "options": ["git", "Java", "C#", "Python"],
             "answer": "git"
         })
+
+
+def generateTechAnswers(question):
+    question["options"] = sample(question_bank["technologies"],4)
+    if question["question_answer"] in question["options"]:
+        question["options"].remove(question["question_answer"])
+    question["options"] = question["options"][:3]
+
+def generateOODConceptAnswers():
+    question["options"] = sample(question_bank["ood-concepts"],4)
+    if question["question_answer"] in question["options"]:
+        question["options"].remove(question["question_answer"])
+    question["options"] = question["options"][:3]
+
+def generateDataStructAnswers():
+    question["options"] = question_bank["data-structures"]
+
+def generateAlgorithmAnswers():
+    question["options"] = question_bank["algorithm-types"]
+
+def generateGeneralAnswers():
+    question["options"] = sample(question_bank["general-programming-principles"],4)
+    if question["question_answer"] in question["options"]:
+        question["options"].remove(question["question_answer"])
+    question["options"] = question["options"][:3]
+
+mapOfQuestionTypesToAnswerGenerationMethods = {
+    "snippetToTech" : generateTechAnswers,
+    "everydayDataStructs" : generateDataStructAnswers,
+    "snippetToOODConcept" : generateOODConceptAnswers,
+    "algorithmToType" : generateAlgorithmAnswers,
+    "generalProgrammingPrinciples" : generateGeneralAnswers
+}
 
 supportedTechs = [
     {
@@ -64,6 +98,8 @@ def techs():
 @app.route('/game')
 def play_game():
     techs = request.args.get('techs', None)
+    if techs:
+        session['techs'] = techs
     questions = generateQuestions(techs)
     return jsonify(questions)
     #return render_template('game.html', is_ajax=is_xmlhttp_request(request.headers))
