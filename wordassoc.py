@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, abort, jsonify
-from random import sample
+from random import sample, shuffle, choice
 from questions import question_bank
 app = Flask(__name__)
 
@@ -33,30 +33,41 @@ questions["questions"].append({
             "answer": "git"
         })
 
-
 def generateTechAnswers(question):
-    question["options"] = sample(question_bank["technologies"],4)
-    if question["question_answer"] in question["options"]:
-        question["options"].remove(question["question_answer"])
-    question["options"] = question["options"][:3]
+    options = sample(question_bank["technologies"],4)
+    if question["answer"] in options:
+        options.remove(question["answer"])
+    options = options[:3]
+    options.append(question["answer"])
+    shuffle(options)
+    return options
 
-def generateOODConceptAnswers():
-    question["options"] = sample(question_bank["ood-concepts"],4)
-    if question["question_answer"] in question["options"]:
-        question["options"].remove(question["question_answer"])
-    question["options"] = question["options"][:3]
+def generateOODConceptAnswers(question):
+    options = sample(question_bank["ood-concepts"],4)
+    if question["answer"] in options:
+        options.remove(question["answer"])
+    options = options[:3]
+    options.append(question["answer"])
+    shuffle(options)
+    return options
 
-def generateDataStructAnswers():
-    question["options"] = question_bank["data-structures"]
+def generateDataStructAnswers(question):
+    return question_bank["data-structures"]
 
-def generateAlgorithmAnswers():
-    question["options"] = question_bank["algorithm-types"]
+def generateAlgorithmAnswers(question):
+    return question_bank["algorithm-types"]
 
-def generateGeneralAnswers():
-    question["options"] = sample(question_bank["general-programming-principles"],4)
-    if question["question_answer"] in question["options"]:
-        question["options"].remove(question["question_answer"])
-    question["options"] = question["options"][:3]
+def generateGeneralAnswers(question):
+    options = sample(question_bank["general-programming-principles"],4)
+    if question["answer"] in options:
+        options.remove(question["answer"])
+    options = options[:3]
+    options.append(question["answer"])
+    shuffle(options)
+    return options
+
+def generateAnswers(question):
+    return mapOfQuestionTypesToAnswerGenerationMethods[question["question_type"]](question)
 
 mapOfQuestionTypesToAnswerGenerationMethods = {
     "snippetToTech" : generateTechAnswers,
@@ -66,21 +77,7 @@ mapOfQuestionTypesToAnswerGenerationMethods = {
     "generalProgrammingPrinciples" : generateGeneralAnswers
 }
 
-supportedTechs = [
-    {
-        "technology": "git",
-        "color": "#000000",
-        "background_color": "#FF0000"
-    } for x in range(14)
-]
-supportedTechs.append(
-    {
-        "technology": "somethingElse",
-        "color": "#000000",
-        "background_color": "#00FF00"
-    })
-
-technologies = ("git")
+technologies = ("git","java","javascript","python")
 
 # Routes
 @app.route('/')
@@ -93,14 +90,19 @@ def techs():
     if email:
         session['email'] = email
         technologies=getTechsForUser(email)
-    return render_template('techs.html', supportedTechs=supportedTechs, technologies=technologies, is_ajax=is_xmlhttp_request(request.headers))
+    return render_template('techs.html', supportedTechs=question_bank["technologies"], 
+            baseTechs=question_bank["base_techs"], technologies=technologies, 
+            is_ajax=is_xmlhttp_request(request.headers))
 
 @app.route('/game')
 def play_game():
     techs = request.args.get('techs', None)
     if techs:
         session['techs'] = techs
-    questions = generateQuestions(techs)
+    else:
+        techs = technologies
+    question_list = generateQuestions(techs)
+    questions = {"questions":question_list}
     return jsonify(questions)
     #return render_template('game.html', is_ajax=is_xmlhttp_request(request.headers))
 
@@ -120,7 +122,23 @@ def getTechsForUser(email):
     return technologies
 
 def generateQuestions(techs):
+    questions = []
+    while len(questions) < 25:
+        question = choice(question_bank["questions"])
+        if question["question_type"] == "snippetToTech":
+            if len(techs)<4:
+                continue
+            if question["answer"] not in techs:
+                continue
+        question = question.copy()
+        question["options"] = generateAnswers(question)
+        questions.append(question)
     return questions
+    # Pick a random question
+    # skip snippetToTech if they don't have enough techs
+    # skip snippetToTech if it's not one of their techs
+    # Generate answers
+    # Add to questions
 
 if __name__ == '__main__':
     app.debug = True

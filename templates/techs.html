@@ -1,7 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
+    <div class="base-tech-block" style="background:#CCC;">
+        {% for baseTech in baseTechs %}
+        <div class="tech-block selected" style="border: 1px solid black;">{{ baseTech }}</div> 
+        {% endfor %}
+    </div>
     {% for supTech in supportedTechs %}
-    <div class="tech-block{% if supTech.technology in technologies %} selected{% endif %}" style="background-color:{{ supTech.background_color }}; color:{{ supTech.color }};">{{ supTech.technology }}</div> 
+    <div class="tech-block selectable{% if supTech in technologies %} selected{% endif %}" style="border: 1px solid black;">{{ supTech }}</div> 
     {% endfor %}
     <div id="start-block" class="start-block">Start!</div>
 {% endblock %}

@@ -39,7 +39,7 @@
     });
 
     /* Tech selection */
-    $(document).on('click', '.tech-block', function(){
+    $(document).on('click', '.tech-block.selectable', function(){
         $(this).toggleClass('selected');
     });
 
