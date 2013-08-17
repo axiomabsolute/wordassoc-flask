@@ -16,9 +16,10 @@
   user-select: none; }
 
 .question-block {
-  text-align: center;
+  text-align: left;
   border: 2px solid gray;
-  border-radius: 4px; }
+  border-radius: 4px;
+  padding-left: 10px; }
 
 .tech-block, .start-block {
   text-align: center;
@@ -36,6 +37,9 @@
   -ms-user-select: none;
   user-select: none;
   opacity: .5; }
+
+.base-tech-block {
+  background: #CCC; }
 
 .tech-block.selected {
   opacity: 1.0; }

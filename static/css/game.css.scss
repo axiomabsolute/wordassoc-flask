@@ -40,9 +40,11 @@ $four-by-four-block-margin-horiz: 2vw;
 }
 
 .question-block {
-    text-align: center;
+    text-align: left;
     border: 2px solid gray;
     border-radius: 4px;
+    padding-left: 10px;
+
 }
 
 .tech-block, .start-block {

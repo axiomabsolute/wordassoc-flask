@@ -56,7 +56,18 @@
             // Render first question
             renderQuestion(questions["questions"][0]);
             // Start the timer
-            startTimer(60000,function(){console.log("Done!");console.log(answers);$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3>');/* Display finished modal; disable answers; collect answers, and request report*/});
+            startTimer(60000,function(){
+                console.log("Done!");
+                console.log(answers);
+                var score = 0;
+                for (var i = 0; i<answers.length; i++){
+                    if (answers[i] === questions["questions"][i%questions["questions"].length]["answer"]){
+                        score = score + 1;
+                    }
+                }
+                $('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3><h2>Score: ' + score + ' out of ' + answers.length + ' answers.</h2>');
+                /* Display finished modal; disable answers; collect answers, and request report*/
+            });
 
 
             $(document).on('click', '.answer-block', function() {
@@ -85,7 +96,7 @@
     // Helper functions
     function renderBaseGameTemplate(){
         // Compiled via doT; fix this.
-        var out='<div class="game"> <div class="question-block"> <div class="timer"><div class="progress radius"><span id="timer-region" class="meter"></span></div></div> <hr> <div class="question"><h3></h3></div> <div class="notifications"></div> </div> <div class="answers"> </div></div>';
+        var out='<div class="game"> <div class="question-block"> <div class="timer"><div class="progress radius"><span id="timer-region" class="meter"></span></div></div> <hr> <div class="question"><h3><pre></pre></h3></div> <div class="notifications"></div> </div> <div class="answers"> </div></div>';
         $('.main-content').html(out);
     }
 
@@ -95,7 +106,7 @@
         // Generate answer portion replacement.
         var answerHtml = renderAnswersToHtml(question);
         // Replace respective sections
-        $('.question h3').html(questionText);
+        $('.question h3 pre').html(questionText);
         $('.answers').html(answerHtml);
     }
 
