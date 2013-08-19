@@ -90,13 +90,15 @@ def techs():
     email = request.args.get('email', None)
     print("email: " + str(email))
     print("Session? " + str(session))
-    return render_template('techs.html', supportedTechs=question_bank["technologies"], 
+    resp = render_template('techs.html', supportedTechs=question_bank["technologies"], 
             baseTechs=question_bank["base_techs"], technologies=technologies, 
             is_ajax=is_xmlhttp_request(request.headers))
+    resp.set_cookie("user-email", email)
+    return resp
 
 @app.route('/game')
 def play_game():
-    print(session)
+    print(request.cookies.get("user-email")
     techs = request.args.get('techs', None)
     if not techs:
         techs = technologies
