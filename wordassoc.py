@@ -86,6 +86,7 @@ def login():
 
 @app.route('/techs')
 def techs():
+    print("Do we get here?")
     email = request.args.get('email', None)
     if email:
         session['email'] = email

@@ -19,6 +19,12 @@
         return Math.pow(Math.E, 10*t)/(Math.pow(Math.E, 10));
     };
 
+    $(document).ajaxError(function(evt, settings, err) {
+        console.log(evt);
+        console.log(settings);
+        console.log(err);
+    });
+
     /* Login */
     $(document).on('click', '#login-button', function(){
         var email = $('#login-email-input').val();
