@@ -98,7 +98,7 @@ def techs():
 
 @app.route('/game')
 def play_game():
-    print(request.cookies.get("user-email")
+    print(request.cookies.get("user-email"))
     techs = request.args.get('techs', None)
     if not techs:
         techs = technologies
