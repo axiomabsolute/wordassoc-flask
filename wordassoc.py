@@ -86,11 +86,13 @@ def login():
 
 @app.route('/techs')
 def techs():
-    print("Do we get here?")
+    app.logger.debug("Here?")
     email = request.args.get('email', None)
+    app.logger.debug("email: " + str(email))
+    app.logger.debug("Session? " + str(session))
     if email:
         session['email'] = email
-        technologies=getTechsForUser(email)
+   #     technologies=getTechsForUser(email)
     return render_template('techs.html', supportedTechs=question_bank["technologies"], 
             baseTechs=question_bank["base_techs"], technologies=technologies, 
             is_ajax=is_xmlhttp_request(request.headers))
@@ -98,9 +100,7 @@ def techs():
 @app.route('/game')
 def play_game():
     techs = request.args.get('techs', None)
-    if techs:
-        session['techs'] = techs
-    else:
+    if not techs:
         techs = technologies
     question_list = generateQuestions(techs)
     questions = {"questions":question_list}
