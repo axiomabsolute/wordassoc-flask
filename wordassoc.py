@@ -86,10 +86,10 @@ def login():
 
 @app.route('/techs')
 def techs():
-    app.logger.debug("Here?")
+    app.logger.error("Here?")
     email = request.args.get('email', None)
-    app.logger.debug("email: " + str(email))
-    app.logger.debug("Session? " + str(session))
+    app.logger.error("email: " + str(email))
+    app.logger.error("Session? " + str(session))
     if email:
         session['email'] = email
    #     technologies=getTechsForUser(email)
