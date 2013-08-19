@@ -86,19 +86,17 @@ def login():
 
 @app.route('/techs')
 def techs():
-    app.logger.error("Here?")
+    print("Here?")
     email = request.args.get('email', None)
-    app.logger.error("email: " + str(email))
-    app.logger.error("Session? " + str(session))
-    if email:
-        session['email'] = email
-   #     technologies=getTechsForUser(email)
+    print("email: " + str(email))
+    print("Session? " + str(session))
     return render_template('techs.html', supportedTechs=question_bank["technologies"], 
             baseTechs=question_bank["base_techs"], technologies=technologies, 
             is_ajax=is_xmlhttp_request(request.headers))
 
 @app.route('/game')
 def play_game():
+    print(session)
     techs = request.args.get('techs', None)
     if not techs:
         techs = technologies
