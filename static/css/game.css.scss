@@ -82,7 +82,7 @@ $four-by-four-block-margin-horiz: 2vw;
 /* Media queries & Layout */
 @media all and (orientation: landscape){
     .answer-block {
-        height: 39vh;
+        height: 35vh;
         width: 21vw;
         float: right;
         margin: 2vh 2vw;
@@ -90,7 +90,7 @@ $four-by-four-block-margin-horiz: 2vw;
     }
 
     .question-block {
-        height: 86vh;
+        height: 76vh;
         width: 48vw;
         float: left;
     }
