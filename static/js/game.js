@@ -26,7 +26,7 @@
     });
 
     /* Login */
-    $(document).on('click', '#login-button', function(){
+    $(document).on('click touchstart', '#login-button', function(){
         var email = $('#login-email-input').val();
         if (!email){
             console.log("Alert the user to provide an email.  Also check if valid");
@@ -45,12 +45,12 @@
     });
 
     /* Tech selection */
-    $(document).on('click', '.tech-block.selectable', function(){
+    $(document).on('click touchstart', '.tech-block.selectable', function(){
         $(this).toggleClass('selected');
     });
 
     // On start, get the selected technologies, render the game, and start the timer.
-    $(document).on('click', '#start-block', function(){
+    $(document).on('click touchstart', '#start-block', function(){
         var selectedTechs = $('.tech-block.selected').map(function(i,e){return $(e).text()}).toArray();
         var questions = {};
         var answers = [];
@@ -76,7 +76,7 @@
             });
 
 
-            $(document).on('click', '.answer-block', function() {
+            $(document).on('click touchstart', '.answer-block', function() {
                 // Store the answer
                 console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index-1]["answer"]);
                 answers.push($(this).html());
