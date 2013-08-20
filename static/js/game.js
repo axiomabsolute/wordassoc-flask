@@ -54,7 +54,7 @@
         var selectedTechs = $('.tech-block.selected').map(function(i,e){return $(e).text()}).toArray();
         var questions = {};
         var answers = [];
-        var index = 1;
+        var index = 0; // The current question
         $.get('/game', {"techs": selectedTechs}, function(data, stat, xhr){
             questions = data;
             // Render base template
@@ -78,18 +78,17 @@
 
             $(document).on('click touchstart', '.answer-block', function() {
                 // Store the answer
-                console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index-1]["answer"]);
+                console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index]["answer"]);
                 answers.push($(this).html());
+                index = index + 1;
+                if (index === questions["questions"].length) {
+                    index = 0;
+                }
                 // Render the next question
                 renderQuestion(questions["questions"][index]);
-                // Increment index
-                index = index + 1;
                 // If index is getting close to the end, get more questions
                 if (index >= questions["questions"].length - 3) {
                     console.log("getting close to running out......");
-                }
-                if (index === questions["questions"].length) {
-                    index = 0;
                 }
             });
         });
