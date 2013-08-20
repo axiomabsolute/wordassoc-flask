@@ -22,3 +22,9 @@ The core of the game will be a word association game.  Small, instantly recogniz
 # A touch of data science
 ### TBD
 
+
+# Running locally
+1. source venv/bin/activate
+1. python wordassoc.py OR foreman start
+1. sass --watch static/css/game.css.scss:static/css/game.css
+1. Navigate to localhost:5000

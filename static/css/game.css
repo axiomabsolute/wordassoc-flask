@@ -1,5 +1,3 @@
-/* Variables */
-/* Mixins */
 /* Semantic Elements */
 .top-bar {
   max-height: 10vh; }
@@ -14,6 +12,9 @@
   -moz-user-select: moz-none;
   -ms-user-select: none;
   user-select: none; }
+
+.question {
+  word-wrap: break-word; }
 
 .question-block {
   text-align: left;
