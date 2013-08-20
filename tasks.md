@@ -10,7 +10,7 @@
     * Service: Get report & persist user data
     * verall results" link
 1. <del>Set up responsive layout</del>
-1. Flesh out question generation service
+1. <del>Flesh out question generation service</del>
 <del>1. Generate test questions & technologies lists</del>
 1. Write script to look for technology keywords in resumes
 <del>1. Add game timer display</del>

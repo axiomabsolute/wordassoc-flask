@@ -104,7 +104,6 @@ def play_game():
     question_list = generateQuestions(techs)
     questions = {"questions":question_list}
     return jsonify(questions)
-    #return render_template('game.html', is_ajax=is_xmlhttp_request(request.headers))
 
 @app.route('/result')
 def result():

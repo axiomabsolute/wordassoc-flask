@@ -416,19 +416,19 @@ question_bank = {"questions":
         },
         {
             "question_id" : "",
-            "question": "private int foo;\npublic int getFoo(){\n\treturn this.foo;\n}",
+            "question": "public getFoo(){\n  return this.foo;\n}",
             "answer": "encapsulation",
             "question_type": "snippetToOODConcept"
         },
         {
             "question_id" : "",
-            "question": "class Dog extends Animal {...}\npublic void speak(Animal animal){...}\nspeak(new Dog());",
+            "question": "Animal puppy = new Dog();",
             "answer": "polymorphism",
             "question_type": "snippetToOODConcept"
         },
         {
             "question_id" : "",
-            "question": "public int length(List lst){\n\tif (lst.head == null){return 0;}\n\treturn 1 + length(lst.tail);\n}",
+            "question": "fib(n)=fib(n-1)+n",
             "answer": "recursion",
             "question_type": "generalProgrammingPrinciples"
         },
