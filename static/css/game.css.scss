@@ -23,8 +23,8 @@ $four-by-four-block-margin-horiz: 2vw;
 }
 
 /* Semantic Elements */
-.game {
-
+.intro {
+    padding: 10px;
 }
 
 .top-bar {
@@ -41,14 +41,14 @@ $four-by-four-block-margin-horiz: 2vw;
 
 .question {
     word-wrap: break-word;
+    padding: 0px 10px;
 }
 
 .question-block {
     text-align: left;
     border: 2px solid gray;
     border-radius: 4px;
-    padding-left: 10px;
-
+    margin-left: 10px;
 }
 
 .tech-block, .start-block {
@@ -59,6 +59,11 @@ $four-by-four-block-margin-horiz: 2vw;
 .tech-block {
     @include noselect;
     opacity: .5;
+    border: 2px solid black;
+}
+
+.tech-block always-selected {
+    border: 2px solid black;
 }
 
 .base-tech-block {
@@ -88,7 +93,6 @@ $four-by-four-block-margin-horiz: 2vw;
         height: 86vh;
         width: 48vw;
         float: left;
-        margin-left: 2vw;
     }
 }
 

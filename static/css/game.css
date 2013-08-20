@@ -1,4 +1,7 @@
 /* Semantic Elements */
+.intro {
+  padding: 10px; }
+
 .top-bar {
   max-height: 10vh; }
 
@@ -14,13 +17,14 @@
   user-select: none; }
 
 .question {
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  padding: 0px 10px; }
 
 .question-block {
   text-align: left;
   border: 2px solid gray;
   border-radius: 4px;
-  padding-left: 10px; }
+  margin-left: 10px; }
 
 .tech-block, .start-block {
   text-align: center;
@@ -37,7 +41,11 @@
   -moz-user-select: moz-none;
   -ms-user-select: none;
   user-select: none;
-  opacity: .5; }
+  opacity: .5;
+  border: 2px solid black; }
+
+.tech-block always-selected {
+  border: 2px solid black; }
 
 .base-tech-block {
   background: #CCC; }
@@ -61,8 +69,7 @@
   .question-block {
     height: 86vh;
     width: 48vw;
-    float: left;
-    margin-left: 2vw; } }
+    float: left; } }
 @media all and (orientation: portrait) {
   .answer-block {
     height: 20vh;
