@@ -1,7 +1,5 @@
 /* Variables */
 /* Tech blocks */
-/* Answer blocks */
-/* Question block */
 /* Mixins */
 /* Semantic Elements */
 .intro {
@@ -33,11 +31,11 @@
 
 .tech-block, .start-block {
   text-align: center;
-  height: 30vh;
-  width: 21vw;
-  margin: 10px 10px;
+  height: 19vh;
+  width: 19vw;
+  margin: 3vh 3vw;
   float: left;
-  padding-top: 15vh; }
+  padding-top: 9vh; }
 
 .tech-block {
   -webkit-touch-callout: none;

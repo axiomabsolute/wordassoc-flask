@@ -1,32 +1,9 @@
 /* Variables */
 /* Tech blocks */
-$four-by-four-block-margin-vert: 10px;
-$four-by-four-block-margin-horiz: 10px;
-$four-by-four-block-height: 30vh;
-$four-by-four-block-width: 21vw;
-
-/* Answer blocks */
-$answer-block-height-landscape: 17vh;
-$answer-block-width-landscape: 25vw;
-$answer-block-padding-top-landscape: 8vh;
-$answer-block-margin-landscape-topbottom: 10px;
-$answer-block-margin-landscape-leftright: 20px;
-$answer-block-margin-landscape: $answer-block-margin-landscape-topbottom $answer-block-margin-landscape-leftright;
-
-$answer-block-height-portrait: 20vh;
-$answer-block-width-portrait: 46vw;
-$answer-block-padding-top-portrait: 10vh;
-$answer-block-margin-portrait: 20px;
-
-/* Question block */
-$question-block-height-landscape: 80vh;
-$question-block-width-landscape: calc(100vw - $answer-block-width-landscape - (2*$answer-block-margin-landscape-leftright));
-$question-block-margin-left-landscape: 20px;
-
-$question-block-height-portrait: calc(100vh - (2* $answer-block-height-portrait) - (2 * $answer-block-margin-portrait)-2*$question-block-margin-portrait);
-$question-block-width-portrait: 96vh;
-$question-block-padding-top-portrait: 10vh;
-$question-block-margin-portrait: 20px;
+$four-by-four-block-margin-vert: 3vh;
+$four-by-four-block-margin-horiz: 3vw;
+$four-by-four-block-height: 19vh;
+$four-by-four-block-width: 19vw;
 
 /* Mixins */
 @mixin noselect {
