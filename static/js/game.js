@@ -3,6 +3,12 @@
 
     var answers = [];
 
+    window.addEventListener("load",function() {
+        setTimeout(function(){
+          window.scrollTo(0, 1);
+        }, 0);
+    });
+
     // Helper funciton to start the timer
     function startTimer(duration, callback){
         $('#timer-region').animate({'width':'0%'}, duration, 'linear', callback);
