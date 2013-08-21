@@ -62,18 +62,18 @@
             // Render first question
             renderQuestion(questions["questions"][0]);
             // Start the timer
-            startTimer(60000,function(){
-                console.log("Done!");
-                console.log(answers);
-                var score = 0;
-                for (var i = 0; i<answers.length; i++){
-                    if (answers[i] === questions["questions"][i%questions["questions"].length]["answer"]){
-                        score = score + 1;
-                    }
-                }
-                $('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3><h2>Score: ' + score + ' out of ' + answers.length + ' answers.</h2>');
-                /* Display finished modal; disable answers; collect answers, and request report*/
-            });
+          //startTimer(60000,function(){
+          //    console.log("Done!");
+          //    console.log(answers);
+          //    var score = 0;
+          //    for (var i = 0; i<answers.length; i++){
+          //        if (answers[i] === questions["questions"][i%questions["questions"].length]["answer"]){
+          //            score = score + 1;
+          //        }
+          //    }
+          //    $('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3><h2>Score: ' + score + ' out of ' + answers.length + ' answers.</h2>');
+          //    /* Display finished modal; disable answers; collect answers, and request report*/
+          //});
 
 
             $(document).on('click touchstart', '.answer-block', function() {

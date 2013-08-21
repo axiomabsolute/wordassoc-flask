@@ -1,10 +1,34 @@
-// Variables */
-$four-by-four-block-height: 18.5vh;
+/* Variables */
+/* Tech blocks */
+$four-by-four-block-margin-vert: 10px;
+$four-by-four-block-margin-horiz: 10px;
+$four-by-four-block-height: 30vh;
 $four-by-four-block-width: 21vw;
-$four-by-four-block-margin-vert: 2vh;
-$four-by-four-block-margin-horiz: 2vw;
 
-// Mixins */
+/* Answer blocks */
+$answer-block-height-landscape: 17vh;
+$answer-block-width-landscape: 25vw;
+$answer-block-padding-top-landscape: 8vh;
+$answer-block-margin-landscape-topbottom: 10px;
+$answer-block-margin-landscape-leftright: 20px;
+$answer-block-margin-landscape: $answer-block-margin-landscape-topbottom $answer-block-margin-landscape-leftright;
+
+$answer-block-height-portrait: 20vh;
+$answer-block-width-portrait: 46vw;
+$answer-block-padding-top-portrait: 10vh;
+$answer-block-margin-portrait: 20px;
+
+/* Question block */
+$question-block-height-landscape: 80vh;
+$question-block-width-landscape: calc(100vw - $answer-block-width-landscape - (2*$answer-block-margin-landscape-leftright));
+$question-block-margin-left-landscape: 20px;
+
+$question-block-height-portrait: calc(100vh - (2* $answer-block-height-portrait) - (2 * $answer-block-margin-portrait)-2*$question-block-margin-portrait);
+$question-block-width-portrait: 96vh;
+$question-block-padding-top-portrait: 10vh;
+$question-block-margin-portrait: 20px;
+
+/* Mixins */
 @mixin noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -82,16 +106,16 @@ $four-by-four-block-margin-horiz: 2vw;
 /* Media queries & Layout */
 @media all and (orientation: landscape){
     .answer-block {
-        height: 35vh;
-        width: 21vw;
+        height: 17vh;
+        width: 25vw;
         float: right;
-        margin: 2vh 2vw;
-        padding-top: 15vh;
+        margin: 0vh 2vw 4vh 2vw;
+        padding-top: 8vh;
     }
 
     .question-block {
-        height: 76vh;
-        width: 48vw;
+        height: 80vh;
+        width: 70vw;
         float: left;
     }
 }

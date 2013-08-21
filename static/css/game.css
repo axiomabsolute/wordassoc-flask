@@ -1,3 +1,8 @@
+/* Variables */
+/* Tech blocks */
+/* Answer blocks */
+/* Question block */
+/* Mixins */
 /* Semantic Elements */
 .intro {
   padding: 10px; }
@@ -28,11 +33,11 @@
 
 .tech-block, .start-block {
   text-align: center;
-  height: 18.5vh;
+  height: 30vh;
   width: 21vw;
-  margin: 2vh 2vw;
+  margin: 10px 10px;
   float: left;
-  padding-top: 9vh; }
+  padding-top: 15vh; }
 
 .tech-block {
   -webkit-touch-callout: none;
@@ -60,15 +65,15 @@
 /* Media queries & Layout */
 @media all and (orientation: landscape) {
   .answer-block {
-    height: 35vh;
-    width: 21vw;
+    height: 17vh;
+    width: 25vw;
     float: right;
-    margin: 2vh 2vw;
-    padding-top: 15vh; }
+    margin: 0vh 2vw 4vh 2vw;
+    padding-top: 8vh; }
 
   .question-block {
-    height: 76vh;
-    width: 48vw;
+    height: 80vh;
+    width: 70vw;
     float: left; } }
 @media all and (orientation: portrait) {
   .answer-block {
