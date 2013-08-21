@@ -75,7 +75,6 @@
                 /* Display finished modal; disable answers; collect answers, and request report*/
             });
 
-
             $(document).on('click touchstart', '.answer-block', function() {
                 // Store the answer
                 console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index]["answer"]);
