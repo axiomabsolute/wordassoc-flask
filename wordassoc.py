@@ -5,7 +5,7 @@ from questions import question_bank
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'localdata/local.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'localdata/local.db')
 db = SQLAlchemy(app)
 
 # Sample test data
