@@ -5,7 +5,7 @@ from questions import question_bank
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'localdata/local.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'sqlite:///localdata/local.db')
 db = SQLAlchemy(app)
 
 # Sample test data
@@ -155,7 +155,24 @@ def generateQuestions(techs):
         questions.append(question)
     return questions
 
+class Test(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+
+    def __init__(self, name):
+        self.name = name
+    
+    def __repr__(self):
+        return "<Name %r>" % self.name
+
 if __name__ == '__main__':
+    db.create_all()
+    t = Test("Devon")
+    db.session.add(t)
+    db.session.commit()
     app.debug = True
     app.secret_key = "test"
     app.run()
+
+
+
