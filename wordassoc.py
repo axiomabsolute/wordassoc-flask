@@ -61,9 +61,6 @@ def login():
 
 @app.route('/techs')
 def techs():
-    print("Here?")
-    email = request.args.get('email', None)
-    print("email: " + str(email))
     resp = render_template('techs.html', supportedTechs=question_bank["technologies"], 
             baseTechs=question_bank["base_techs"], technologies=technologies, 
             is_ajax=is_xmlhttp_request(request.headers))

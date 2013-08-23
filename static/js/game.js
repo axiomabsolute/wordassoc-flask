@@ -26,16 +26,11 @@
     });
 
     /* Login */
-    $(document).on('click touchstart', '#login-button', function(){
-        var email = $('#login-email-input').val();
-        if (!email){
-            console.log("Alert the user to provide an email.  Also check if valid");
-        } else {
-            // Ajax request
-            $.get('/techs', {"email": email}, function(data, stat, xhr){
-                $('.main-content').html(data);
-            });
-        }
+    $(document).on('click touchstart', '#start-button', function(){
+        // Ajax request
+        $.get('/techs', {}, function(data, stat, xhr){
+            $('.main-content').html(data);
+        });
     });
 
     $(document).on('keydown', '#login-email-input', function(event){
