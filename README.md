@@ -28,3 +28,9 @@ The core of the game will be a word association game.  Small, instantly recogniz
 1. python wordassoc.py OR foreman start
 1. sass --watch static/css/game.css.scss:static/css/game.css
 1. Navigate to localhost:5000
+
+# Setting up herokupostgres
+1. heroku addons:add heroku-postresql:dev
+1. heroku pg:promote `heroku_postgresql_color_url`  _Note: replace this with whatever "color" url they give you_
+
+That's it!  Getting Flask-SQLAlchemy set up was a much bigger pain.  For some reason foreman still doesn't like it :(

@@ -8,36 +8,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'sqlite:///localdata/local.db')
 db = SQLAlchemy(app)
 
-# Sample test data
-result = {"reports":[
-    {
-        "label": "Average time per question",
-        "value": 2.4,
-        "type": "basic"
-    },
-    {
-        "label": "Percent of questions correct",
-        "value": "80%",
-        "type": "basic"
-    }
-]}
-
-questions = {
-    "questions": [
-        {
-            "question": "HEAD~2",
-            "options": sample(["git", "Java", "C#", "Python"],4),
-            "answer": "git"
-        } for x in range(19)
-    ]
-}
-
-questions["questions"].append({
-            "question": "test",
-            "options": ["git", "Java", "C#", "Python"],
-            "answer": "git"
-        })
-
 def generateTechAnswers(question):
     options = sample(question_bank["technologies"],4)
     if question["answer"] in options:
@@ -177,6 +147,21 @@ class Question(db.Model):
         self.correctAnswer = correctAnswer
         self.questionType = questionType
 
+    @staticmethod
+    def loadQuestionsIntoDb(questions):
+        if len(Question.query.all()) != len(questions):
+            print("Question table not synced: " + str(len(Question.query.all())) + " vs. " + str(len(questions)))
+            print("Cleaning out question table")
+            for old_q in Question.query.all():
+                db.session.delete(old_q)
+            db.session.commit()
+            print("Adding new questions")
+            for question in questions:
+                db.session.add(Question(question['question'],question['answer'],question['question_type']))
+            print("Committing questions")
+            db.session.commit()
+            print("Questions synced")
+
 class User(db.Model):
     email = db.Column(db.String(255), primary_key=True)
 
@@ -202,15 +187,11 @@ class Answer(db.Model):
         self.userAnswer = userAnswer
         self.user = user
 
-
 if __name__ == '__main__':
     db.create_all()
-    t = Test("Devon")
-    db.session.add(t)
     db.session.commit()
+    Question.loadQuestionsIntoDb(question_bank['questions'])
     app.debug = True
     app.secret_key = "test"
     app.run()
-
-
 
