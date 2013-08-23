@@ -155,6 +155,7 @@ def generateQuestions(techs):
         questions.append(question)
     return questions
 
+# Model classes
 class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
@@ -164,6 +165,43 @@ class Test(db.Model):
     
     def __repr__(self):
         return "<Name %r>" % self.name
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(255))
+    correctAnswer = db.Column(db.String(255))
+    questionType = db.Column(db.String(255))
+
+    def __init__(self, text, correctAnswer, questionType):
+        self.text = text
+        self.correctAnswer = correctAnswer
+        self.questionType = questionType
+
+class User(db.Model):
+    email = db.Column(db.String(255), primary_key=True)
+
+    def __init__(self, email):
+        self.email = email
+
+class Game(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String(255), db.ForeignKey('user.email'))
+
+    def __init__(self, user):
+        self.user = user
+
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.Integer, db.ForeignKey('question.id'))
+    user = db.Column(db.String(255), db.ForeignKey('user.email'))
+    userAnswer = db.Column(db.String(255))
+    
+
+    def __init__(self, question, userAnswer, user):
+        self.question = question
+        self.userAnswer = userAnswer
+        self.user = user
+
 
 if __name__ == '__main__':
     db.create_all()
