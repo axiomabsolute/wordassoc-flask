@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, abort, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 from random import sample, shuffle, choice
 from questions import question_bank
 import os
