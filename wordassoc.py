@@ -121,25 +121,27 @@ def play_game():
 
 @app.route('/result', methods=["POST"])
 def result():
-    data = json.loads(request.data)
-    answers = data["answers"]
-    email = data["user"]
-    # Generate game
-    game = Game()
-    db.session.add(game)
-    # Create user if doesn't exit
-    user = User.query.filter_by(email=email) or User(email=email)
-    # Create Answer fields
-    for a in answers:
-        question = Question.query.get(a["question"])
-        answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=question, game=game, correct=(a["userAnswer"]==question.correctAnswer))
-    # Commit to DB
-    db.session.commit()
-    # Render results
-    total_answers = len(Answer.query.filter_by(game=game).all())
-    correct_answers = len(Answer.query.filter_by(game=game).filter_by(correct=True).all())
-    print("Games: " + str(len(Game.query.all())))
-    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers)
+    try:
+        data = json.loads(request.data)
+        answers = data["answers"]
+        email = data["user"]
+        # Generate game
+        game = Game()
+        db.session.add(game)
+        # Create user if doesn't exit
+        user = User.query.filter_by(email=email) or User(email=email)
+        # Create Answer fields
+        for a in answers:
+            question = Question.query.get(a["question"])
+            answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=question, game=game, correct=(a["userAnswer"]==question.correctAnswer))
+        # Commit to DB
+        db.session.commit()
+        # Render results
+        total_answers = len(Answer.query.filter_by(game=game).all())
+        correct_answers = len(Answer.query.filter_by(game=game).filter_by(correct=True).all())
+        return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers)
+    except Exception e:
+        return render_template('error.html', error = e)
 
 if __name__ == '__main__':
     db.create_all()
