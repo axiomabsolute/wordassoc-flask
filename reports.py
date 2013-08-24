@@ -20,4 +20,4 @@ def getLeaderboard(games):
     for game in games:
         result[game.player] = max(result[game.player], game.score)
     result = [{"user": p, "score":result[p]} for p in result]
-    return [x for x in reversed(sorted(result.iteritems(),lambda x,y: y["score"]))]
+    return [x for x in reversed(sorted(result,key=lambda x: x["score"]))]
