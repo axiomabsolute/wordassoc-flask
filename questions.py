@@ -91,7 +91,7 @@ question_bank = {"questions":
             "question_type": "snippetToTech"
         },
         {
-            "question": "foo.prototype={bar:'bar'",
+            "question": "foo.prototype={bar:'bar'}",
             "answer": "javascript",
             "question_type": "snippetToTech"
         },
