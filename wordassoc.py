@@ -58,45 +58,6 @@ mapOfQuestionTypesToAnswerGenerationMethods = {
 
 technologies = ("git","java","javascript","python")
 
-# Routes
-@app.route('/')
-def login():
-    return render_template('login.html', is_ajax=is_xmlhttp_request(request.headers))
-
-@app.route('/techs')
-def techs():
-    resp = render_template('techs.html', supportedTechs=question_bank["technologies"], 
-            baseTechs=question_bank["base_techs"], technologies=technologies, 
-            is_ajax=is_xmlhttp_request(request.headers))
-    return resp
-
-@app.route('/game')
-def play_game():
-    techs = request.args.get('techs', None)
-    if not techs:
-        techs = technologies
-    question_list = generateQuestions(techs)
-    questions = {"questions":question_list}
-    return jsonify(questions)
-
-@app.route('/result', methods=["POST"])
-def result():
-    data = json.loads(request.data)
-    answers = data["answers"]
-    email = data["user"]
-    # Generate game
-    game = Game(email)
-    db.session.add(game)
-    # Create user if doesn't exit
-    user = User.query.filter_by(email=email) or User(email)
-    # Create Answer fields
-    for a in answers:
-        db.session.add(Answer(a["question"], a["userAnswer"], email))
-    # Commit to DB
-    db.session.commit()
-    # Render results
-    return render_template('result.html', total_answers = len(Answer.query.all()))
-
 """
 Check in the headers dict for the 'X-Requested-With' key, which is added with jQuery AJAX requests, and
 if the value is XMLHttpRequest, indicating an HTTML request.
@@ -136,6 +97,45 @@ def generateQuestions(techs):
         question["options"] = generateAnswers(question)
         questions.append(question)
     return questions
+
+# Routes
+@app.route('/')
+def login():
+    return render_template('login.html', is_ajax=is_xmlhttp_request(request.headers))
+
+@app.route('/techs')
+def techs():
+    resp = render_template('techs.html', supportedTechs=question_bank["technologies"], 
+            baseTechs=question_bank["base_techs"], technologies=technologies, 
+            is_ajax=is_xmlhttp_request(request.headers))
+    return resp
+
+@app.route('/game')
+def play_game():
+    techs = request.args.get('techs', None)
+    if not techs:
+        techs = technologies
+    question_list = generateQuestions(techs)
+    questions = {"questions":question_list}
+    return jsonify(questions)
+
+@app.route('/result', methods=["POST"])
+def result():
+    data = json.loads(request.data)
+    answers = data["answers"]
+    email = data["user"]
+    # Generate game
+    game = Game(email)
+    db.session.add(game)
+    # Create user if doesn't exit
+    user = User.query.filter_by(email=email) or User(email)
+    # Create Answer fields
+    for a in answers:
+        db.session.add(Answer(a["question"], a["userAnswer"], email))
+    # Commit to DB
+    db.session.commit()
+    # Render results
+    return render_template('result.html', total_answers = len(Answer.query.all()))
 
 if __name__ == '__main__':
     db.create_all()
