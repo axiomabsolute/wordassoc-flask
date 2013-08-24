@@ -140,7 +140,7 @@ def result():
         total_answers = len(Answer.query.filter_by(game=game).all())
         correct_answers = len(Answer.query.filter_by(game=game).filter_by(correct=True).all())
         return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers)
-    except Exception e:
+    except Exception as e:
         return render_template('error.html', error = e)
 
 if __name__ == '__main__':
