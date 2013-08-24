@@ -5,6 +5,12 @@ $four-by-four-block-margin-horiz: 3vw;
 $four-by-four-block-height: 19vh;
 $four-by-four-block-width: 19vw;
 
+$two-by-eight-block-margin-vert: 3vh;
+$two-by-eight-block-margin-horiz: 3vw;
+$two-by-eight-block-height: 10.5vh;
+$two-by-eight-block-width: 44vw;
+
+
 /* Mixins */
 @mixin noselect {
     -webkit-touch-callout: none;
@@ -21,6 +27,12 @@ $four-by-four-block-width: 19vw;
     width: $four-by-four-block-width;
     margin: $four-by-four-block-margin-vert $four-by-four-block-margin-horiz;
     float: left;
+
+    @media only screen and (orientation: portrait) and (max-width: 500px){
+        height: $two-by-eight-block-height;
+        width: $two-by-eight-block-width;
+        margin: $two-by-eight-block-margin-vert $two-by-eight-block-margin-horiz;
+    }
 }
 
 /* Semantic Elements */
@@ -30,6 +42,7 @@ $four-by-four-block-width: 19vw;
 
 .top-bar {
     max-height: 10vh;
+    
 }
 
 .answer-block {
@@ -55,6 +68,10 @@ $four-by-four-block-width: 19vw;
 .tech-block, .start-block {
     @include block;
     padding-top: floor($four-by-four-block-height/2); 
+
+    @media only screen and (orientation: portrait) and (max-width: 500px){
+        padding-top: floor($two-by-eight-block-height/2);
+    }
 }
 
 .tech-block {
@@ -69,6 +86,10 @@ $four-by-four-block-width: 19vw;
 
 .base-tech-block {
     background: #CCC;
+
+    @media only screen and (max-width: 768px) { 
+        font-size: 14px;
+    }
 }
 
 .tech-block.selected {

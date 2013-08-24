@@ -36,6 +36,14 @@
   margin: 3vh 3vw;
   float: left;
   padding-top: 9vh; }
+  @media only screen and (orientation: portrait) and (max-width: 500px) {
+    .tech-block, .start-block {
+      height: 10.5vh;
+      width: 44vw;
+      margin: 3vh 3vw; } }
+  @media only screen and (orientation: portrait) and (max-width: 500px) {
+    .tech-block, .start-block {
+      padding-top: 5vh; } }
 
 .tech-block {
   -webkit-touch-callout: none;
@@ -52,6 +60,9 @@
 
 .base-tech-block {
   background: #CCC; }
+  @media only screen and (max-width: 768px) {
+    .base-tech-block {
+      font-size: 14px; } }
 
 .tech-block.selected {
   opacity: 1.0; }

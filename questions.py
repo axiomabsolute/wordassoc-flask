@@ -381,5 +381,5 @@ question_bank = {"questions":
     "ood-concepts": ["interface", "inheritance", "constructor", "overloading", "overriding", "encapsulation", "polymorphism"],
     "general-programming-principles": ["generic types", "recursion", "iteration", "type declaration"],
     "technologies": ["git", "java", "python", "javascript", "c#", "c/c++", "matlab"],
-    "base_techs" : ["algorithms", "data structures", "Object-Oriented Design", "general"]
+    "base_techs" : ["algorithms", "data structures", "OOP", "general"]
 }
