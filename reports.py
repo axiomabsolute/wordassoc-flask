@@ -19,4 +19,5 @@ def getLeaderboard(games):
     result = defaultdict(lambda : -100)
     for game in games:
         result[game.player] = max(result[game.player], game.score)
-    return result
+    result = [{"user": p, "score":result[p]} for p in result]
+    return [x for x in reversed(sorted(result.iteritems(),lambda x,y: y["score"]))]

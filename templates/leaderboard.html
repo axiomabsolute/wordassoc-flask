@@ -11,11 +11,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in leaderboard %}
+            {% for entry in leaderboard %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ leaderboard[user] }}</td>
+                <td>{{ entry.user }}</td>
+                <td>{{ entry[score] }}</td>
             </tr>
             {% endfor %}
         </tbody>
