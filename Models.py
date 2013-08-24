@@ -41,6 +41,7 @@ class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.String(255), db.ForeignKey(User.email))
     answers = db.relationship('Answer', backref='game', lazy='dynamic')
+    score = db.Column(db.Float)
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
