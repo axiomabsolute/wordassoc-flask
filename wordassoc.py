@@ -126,7 +126,7 @@ def result():
     email = data["user"]
     game = Game()
     # Create user if doesn't exit
-    user = User.query.filter_by(email=email) or User(email=email)
+    user = User.query.get(email) or User(email=email)
     # Create Answer fields
     total_answers = 0
     correct_answers = 0
@@ -137,6 +137,7 @@ def result():
         if correct_answer:
             correct_answers = correct_answers + 1
         total_answers = total_answers + 1
+        user.answers.append(answer)
         db.session.add(answer)
     # Calculate the game score
     game.score = score=correct_answers - (0.25 * (total_answers - correct_answers))
