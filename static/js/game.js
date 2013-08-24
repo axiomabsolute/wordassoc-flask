@@ -51,7 +51,7 @@
             // Render first question
             renderQuestion(questions["questions"][0]);
             // Start the timer
-            startTimer(5000,function(){
+            startTimer(60000,function(){
                 console.log("Done!");
                 var score = 0;
                 for (var i = 0; i<answers.length; i++){
