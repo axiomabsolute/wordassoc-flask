@@ -125,15 +125,13 @@ def result():
     answers = data["answers"]
     email = data["user"]
     # Generate game
-    game = Game(email)
+    game = Game()
     db.session.add(game)
     # Create user if doesn't exit
-    user = User.query.filter_by(email=email) or User(email)
+    user = User.query.filter_by(email=email) or User(email=email)
     # Create Answer fields
     for a in answers:
         answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=Question.query.get(a["question"]))
-
-        #db.session.add(Answer(a["question"], a["userAnswer"], email))
     # Commit to DB
     db.session.commit()
     # Render results

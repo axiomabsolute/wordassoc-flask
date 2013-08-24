@@ -7,9 +7,6 @@ class Test(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
 
-    def __init__(self, name):
-        self.name = name
-    
     def __repr__(self):
         return "<Name %r>" % self.name
 
@@ -18,11 +15,6 @@ class Question(db.Model):
     correctAnswer = db.Column(db.String(255))
     questionType = db.Column(db.String(255))
     answers = db.relationship('Answer', backref='question', lazy='dynamic')
-
-    def __init__(self, text, correctAnswer, questionType):
-        self.text = text
-        self.correctAnswer = correctAnswer
-        self.questionType = questionType
 
     @staticmethod
     def loadQuestionsIntoDb(questions):
@@ -34,7 +26,7 @@ class Question(db.Model):
             db.session.commit()
             print("Adding new questions")
             for question in questions:
-                db.session.add(Question(question['question'],question['answer'],question['question_type']))
+                db.session.add(text=Question(question['question'],correctAnswer=question['answer'],questionType=question['question_type']))
             print("Committing questions")
             db.session.commit()
             print("Questions synced")
@@ -43,9 +35,6 @@ class User(db.Model):
     email = db.Column(db.String(255), primary_key=True)
     games = db.relationship('Game', backref='user', lazy='dynamic')
     answers = db.relationship('Answer', backref='user', lazy='dynamic')
-
-    def __init__(self, email):
-        self.email = email
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,7 +46,3 @@ class Answer(db.Model):
     user_id = db.Column(db.String(255), db.ForeignKey(User.email))
     userAnswer = db.Column(db.String(255))
     
-
-    def __init__(self, userAnswer):
-        self.userAnswer = userAnswer
-
