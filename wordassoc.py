@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, abort, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from random import sample, shuffle, choice
 from questions import question_bank
-from Models import db, User, Answer, Game, Question
+from Models import db, User, Question, Answer, Game
 import os
 import json
 
@@ -131,7 +131,9 @@ def result():
     user = User.query.filter_by(email=email) or User(email)
     # Create Answer fields
     for a in answers:
-        db.session.add(Answer(a["question"], a["userAnswer"], email))
+        answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=Question.query.get(a["question"]))
+
+        #db.session.add(Answer(a["question"], a["userAnswer"], email))
     # Commit to DB
     db.session.commit()
     # Render results

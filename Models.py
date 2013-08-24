@@ -17,6 +17,7 @@ class Question(db.Model):
     text = db.Column(db.String(255), primary_key=True)
     correctAnswer = db.Column(db.String(255))
     questionType = db.Column(db.String(255))
+    answers = db.relationship('Answer', backref='question', lazy='dynamic')
 
     def __init__(self, text, correctAnswer, questionType):
         self.text = text
@@ -40,26 +41,23 @@ class Question(db.Model):
 
 class User(db.Model):
     email = db.Column(db.String(255), primary_key=True)
+    games = db.relationship('Game', backref='user', lazy='dynamic')
+    answers = db.relationship('Answer', backref='user', lazy='dynamic')
 
     def __init__(self, email):
         self.email = email
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(255), db.ForeignKey('user.email'))
-
-    def __init__(self, user):
-        self.user = user
+    person_id = db.Column(db.String(255), db.ForeignKey(User.email))
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.Integer, db.ForeignKey('question.text'))
-    user = db.Column(db.String(255), db.ForeignKey('user.email'))
+    question_id = db.Column(db.String(255), db.ForeignKey(Question.text))
+    user_id = db.Column(db.String(255), db.ForeignKey(User.email))
     userAnswer = db.Column(db.String(255))
     
 
-    def __init__(self, question, userAnswer, user):
-        self.question = question
+    def __init__(self, userAnswer):
         self.userAnswer = userAnswer
-        self.user = user
 
