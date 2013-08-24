@@ -48,4 +48,5 @@ class Answer(db.Model):
     user_id = db.Column(db.String(255), db.ForeignKey(User.email))
     userAnswer = db.Column(db.String(255))
     game_id = db.Column(db.Integer, db.ForeignKey(Game.id))
+    correct = db.Column(db.Boolean)
     
