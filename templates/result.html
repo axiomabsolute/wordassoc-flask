@@ -2,9 +2,19 @@
     <!-- Maybe do something with tiles and a flow layout -->
     <div class="row">
         <h2>How'd you do?</h2>
-        <h2>{{ correct_answers }} out of {{ total_answers }}</h2>
+        <h2>{{ correct_answers }} answer correct out of {{ total_answers }}</h2>
         <h2>Score: {{ game_score }}</h2>
         <h2>Current Standing: {{ standing }} of {{ total_games }}</h2>
+    </div>
+    <div class="row">
+        <ul>
+            {% for tech in accuracyByTech %}
+            <li>{{ tech }} : {{ accuracyByTech[tech]*100 }}%</li>
+            {% endfor %}
+            {% for type in accuracyByCategory %}
+            <li>{{ type }} : {{ accuracyByCategory[type]*100 }}%</li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="row">
         <a href="#" class="button">Done</a>

@@ -5,6 +5,7 @@ from questions import question_bank
 from Models import db, User, Question, Answer, Game
 import os
 import json
+from collections import defaultdict
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'sqlite:///localdata/local.db')
@@ -98,6 +99,24 @@ def generateQuestions(techs):
         questions.append(question)
     return questions
 
+# Report methods
+def calculateAccuracyByTech(game_id):
+    answers = Game.query.get(game_id).answers
+    techAnswers = [answer for answer in answers if answer.question.questionType == "snippetToTech"]
+    answersByTech = defaultdict(list)
+    for answer in techAnswers:
+        answersByTech[answer.question.correctAnswer].append(answer)
+    result =  {tech: len([x for x in answersByTech[tech] if x.correct])*1.0/len(answersByTech[tech])*1.0 for tech in answersByTech}
+    return result
+
+def calculateCorrectByCategory(game_id):
+    answers = Game.query.get(game_id).answers
+    answersByCategory = defaultdict(list)
+    for answer in answers:
+        answersByCategory[answer.question.questionType].append(answer)
+    result = {questionType: len([x for x in answersByCategory[questionType] if x.correct])*1.0/len(answersByCategory[questionType])*1.0 for questionType in answersByCategory}
+    return result
+
 # Routes
 @app.route('/')
 def login():
@@ -147,7 +166,10 @@ def result():
     # Render results
     standing = Game.query.filter(Game.score>game.score).count() + 1
     total_games = Game.query.count()
-    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers, game_score=game.score, standing=standing, total_games=total_games)
+    accuracyByTech = calculateAccuracyByTech(game.id)
+    accuracyByQuestionType = calculateCorrectByCategory(game.id)
+    print(accuracyByQuestionType)
+    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers, game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech, accuracyByCategory=accuracyByQuestionType)
 
 if __name__ == '__main__':
     db.create_all()
