@@ -131,11 +131,11 @@ def result():
     user = User.query.filter_by(email=email) or User(email=email)
     # Create Answer fields
     for a in answers:
-        answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=Question.query.get(a["question"]))
+        answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=Question.query.get(a["question"]), game=game)
     # Commit to DB
     db.session.commit()
     # Render results
-    return render_template('result.html', total_answers = len(Answer.query.all()))
+    return render_template('result.html', total_answers = len(Answer.query.filter_by(game=game).all()))
 
 if __name__ == '__main__':
     db.create_all()

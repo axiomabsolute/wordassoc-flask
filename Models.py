@@ -26,7 +26,8 @@ class Question(db.Model):
             db.session.commit()
             print("Adding new questions")
             for question in questions:
-                db.session.add(text=Question(question['question'],correctAnswer=question['answer'],questionType=question['question_type']))
+                q = Question()
+                db.session.add(Question(text=question['question'],correctAnswer=question['answer'],questionType=question['question_type'], answers=[]))
             print("Committing questions")
             db.session.commit()
             print("Questions synced")
@@ -39,10 +40,12 @@ class User(db.Model):
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.String(255), db.ForeignKey(User.email))
+    answers = db.relationship('Answer', backref='game', lazy='dynamic')
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question_id = db.Column(db.String(255), db.ForeignKey(Question.text))
     user_id = db.Column(db.String(255), db.ForeignKey(User.email))
     userAnswer = db.Column(db.String(255))
+    game_id = db.Column(db.Integer, db.ForeignKey(Game.id))
     
