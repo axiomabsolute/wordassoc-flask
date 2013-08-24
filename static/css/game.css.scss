@@ -42,7 +42,11 @@ $two-by-eight-block-width: 44vw;
 }
 
 .top-bar {
-    max-height: 10vh;
+
+    @media only screen and (min-height: 570px)
+    {
+        max-height: 10vh;
+    }
     
 }
 

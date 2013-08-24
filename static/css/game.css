@@ -5,8 +5,9 @@
 .intro {
   padding: 10px; }
 
-.top-bar {
-  max-height: 10vh; }
+@media only screen and (min-height: 570px) {
+  .top-bar {
+    max-height: 10vh; } }
 
 .answer-block {
   text-align: center;
