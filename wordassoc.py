@@ -2,12 +2,16 @@ from flask import Flask, render_template, request, session, abort, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from random import sample, shuffle, choice
 from questions import question_bank
+from Models import db, User, Answer, Game, Question
 import os
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_TEAL_URL', 'sqlite:///localdata/local.db')
-db = SQLAlchemy(app)
+db.app = app
+db.init_app(app)
 
+# Helper methods
 def generateTechAnswers(question):
     options = sample(question_bank["technologies"],4)
     if question["answer"] in options:
@@ -68,8 +72,6 @@ def techs():
 
 @app.route('/game')
 def play_game():
-    print("Make it to the game method.")
-    print(request.cookies.get("user-email"))
     techs = request.args.get('techs', None)
     if not techs:
         techs = technologies
@@ -77,10 +79,23 @@ def play_game():
     questions = {"questions":question_list}
     return jsonify(questions)
 
-@app.route('/result')
+@app.route('/result', methods=["POST"])
 def result():
-    answers = request.args.get('answers', None)
-    return render_template('result.html', result=result, is_ajax=is_xmlhttp_request(request.headers))
+    data = json.loads(request.data)
+    answers = data["answers"]
+    email = data["user"]
+    # Generate game
+    game = Game(email)
+    db.session.add(game)
+    # Create user if doesn't exit
+    user = User.query.filter_by(email=email) or User(email)
+    # Create Answer fields
+    for a in answers:
+        db.session.add(Answer(a["question"], a["userAnswer"], email))
+    # Commit to DB
+    db.session.commit()
+    # Render results
+    return render_template('result.html', total_answers = len(Answer.query.all()))
 
 """
 Check in the headers dict for the 'X-Requested-With' key, which is added with jQuery AJAX requests, and
@@ -121,68 +136,6 @@ def generateQuestions(techs):
         question["options"] = generateAnswers(question)
         questions.append(question)
     return questions
-
-# Model classes
-class Test(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-
-    def __init__(self, name):
-        self.name = name
-    
-    def __repr__(self):
-        return "<Name %r>" % self.name
-
-class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(255))
-    correctAnswer = db.Column(db.String(255))
-    questionType = db.Column(db.String(255))
-
-    def __init__(self, text, correctAnswer, questionType):
-        self.text = text
-        self.correctAnswer = correctAnswer
-        self.questionType = questionType
-
-    @staticmethod
-    def loadQuestionsIntoDb(questions):
-        if len(Question.query.all()) != len(questions):
-            print("Question table not synced: " + str(len(Question.query.all())) + " vs. " + str(len(questions)))
-            print("Cleaning out question table")
-            for old_q in Question.query.all():
-                db.session.delete(old_q)
-            db.session.commit()
-            print("Adding new questions")
-            for question in questions:
-                db.session.add(Question(question['question'],question['answer'],question['question_type']))
-            print("Committing questions")
-            db.session.commit()
-            print("Questions synced")
-
-class User(db.Model):
-    email = db.Column(db.String(255), primary_key=True)
-
-    def __init__(self, email):
-        self.email = email
-
-class Game(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(255), db.ForeignKey('user.email'))
-
-    def __init__(self, user):
-        self.user = user
-
-class Answer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.Integer, db.ForeignKey('question.id'))
-    user = db.Column(db.String(255), db.ForeignKey('user.email'))
-    userAnswer = db.Column(db.String(255))
-    
-
-    def __init__(self, question, userAnswer, user):
-        self.question = question
-        self.userAnswer = userAnswer
-        self.user = user
 
 if __name__ == '__main__':
     db.create_all()

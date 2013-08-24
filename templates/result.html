@@ -1,15 +1,10 @@
-{% extends "layout.html" %}
 {% block body %}
     <!-- Maybe do something with tiles and a flow layout -->
     <div class="row">
         <h2>How'd you do?</h2>
+        <h2>{{ total_answers }}</h2>
     </div>
     <div class="row">
         <a href="#" class="button">Email me how I do against my peers!</a>
     </div>
-    {% for report in result.reports %}
-        {% if report.type == "basic" %}
-            {% include "/fields/basic.html" %}
-        {% endif %}
-    {% endfor %}
 {% endblock %}
