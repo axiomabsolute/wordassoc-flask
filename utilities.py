@@ -55,7 +55,7 @@ if the value is XMLHttpRequest, indicating an HTTML request.
 def is_xmlhttp_request(headers):
     return (headers.has_key("X-Requested-With") and headers["X-Requested-With"] == "XMLHttpRequest")
 
-def getTechsForUser(email):
+def getTechsForPlayer(email):
     return technologies
 
 def generateQuestions(techs):

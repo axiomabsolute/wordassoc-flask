@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, session, abort, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
-from Models import db, User, Question, Answer, Game
+from Models import db, Player, Question, Answer, Game
 from utilities import question_bank, technologies, generateQuestions, is_xmlhttp_request
-from reports import calculateAccuracyByTech, calculateCorrectByCategory
+from reports import calculateAccuracyByTech, calculateCorrectByCategory, getLeaderboard
 import os
 import json
 
@@ -37,21 +37,21 @@ def play_game():
 def result():
     data = json.loads(request.data)
     answers = data["answers"]
-    email = data["user"]
-    game = Game()
-    # Create user if doesn't exit
-    user = User.query.get(email) or User(email=email)
+    email = data["player"]
+    game = Game(person_id=email)
+    # Create player if doesn't exit
+    player = Player.query.get(email) or Player(email=email)
     # Create Answer fields
     total_answers = 0
     correct_answers = 0
     for a in answers:
         question = Question.query.get(a["question"])
-        correct_answer = a["userAnswer"]==question.correctAnswer
-        answer = Answer(userAnswer=a["userAnswer"], user=User.query.get(email), question=question, game=game, correct=correct_answer)
+        correct_answer = a["playerAnswer"]==question.correctAnswer
+        answer = Answer(playerAnswer=a["playerAnswer"], player=Player.query.get(email), question=question, game=game, correct=correct_answer)
         if correct_answer:
             correct_answers = correct_answers + 1
         total_answers = total_answers + 1
-        user.answers.append(answer)
+        player.answers.append(answer)
         db.session.add(answer)
     # Calculate the game score
     game.score = score=correct_answers - (0.25 * (total_answers - correct_answers))
@@ -64,6 +64,10 @@ def result():
     accuracyByTech = calculateAccuracyByTech(game.answers)
     accuracyByQuestionType = calculateCorrectByCategory(game.answers)
     return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers, game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech, accuracyByCategory=accuracyByQuestionType)
+
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))    
 
 if __name__ == '__main__':
     db.create_all()

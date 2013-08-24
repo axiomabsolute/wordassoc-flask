@@ -55,23 +55,23 @@
                 console.log("Done!");
                 var score = 0;
                 for (var i = 0; i<answers.length; i++){
-                    if (answers[i]["userAnswer"] === questions["questions"][i%questions["questions"].length]["answer"]){
+                    if (answers[i]["playerAnswer"] === questions["questions"][i%questions["questions"].length]["answer"]){
                         score = score + 1;
                     }
                 }
                 //$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3><h2>Score: ' + score + ' out of ' + answers.length + ' answers.</h2>');
                 /* Display finished modal; disable answers; collect answers, and request report*/
 
-                $('.main-content').html('<h3><span style="color:red;">Times up!</span></h3><form><fieldset><legend>Enter your email address to register and see your results</legend><div class="row"><div class="large-12 columns"><label>Email</label><input class="user-email" type="text" placeholder="example@me.com"><a href="#" class="button submit-results">Register</a></div></div></fieldset></form>');
+                $('.main-content').html('<h3><span style="color:red;">Times up!</span></h3><form><fieldset><legend>Enter your email address to register and see your results</legend><div class="row"><div class="large-12 columns"><label>Email</label><input class="player-email" type="text" placeholder="example@me.com"><a href="#" class="button submit-results">Register</a></div></div></fieldset></form>');
             });
 
         });
 
         $(document).on('click touchstart', '.answer-block', function() {
             // Store the answer
-            console.log("The user answered " + $(this).html() + ", actual answer " + questions["questions"][index]["answer"]);
+            console.log("The player answered " + $(this).html() + ", actual answer " + questions["questions"][index]["answer"]);
             var currQuestion = questions["questions"][index];
-            answers.push({"question" : currQuestion["question"], "userAnswer" : $(this).html()});
+            answers.push({"question" : currQuestion["question"], "playerAnswer" : $(this).html()});
             index = index + 1;
             if (index === questions["questions"].length) {
                 index = 0;
@@ -85,8 +85,8 @@
         });
 
         $(document).on('click touchstart', '.submit-results', function(){
-            var user = $('.user-email').val();
-            $.ajax('/result', {"type": "POST", "data": JSON.stringify({"user": user, "answers": answers}), "contentType":'application/json',
+            var player = $('.player-email').val();
+            $.ajax('/result', {"type": "POST", "data": JSON.stringify({"player": player, "answers": answers}), "contentType":'application/json',
                 "success": function(data, stat, xhr){
                     $('.main-content').html(data); 
                 }});

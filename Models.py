@@ -32,22 +32,22 @@ class Question(db.Model):
             db.session.commit()
             print("Questions synced")
 
-class User(db.Model):
+class Player(db.Model):
     email = db.Column(db.String(255), primary_key=True)
-    games = db.relationship('Game', backref='user', lazy='dynamic')
-    answers = db.relationship('Answer', backref='user', lazy='dynamic')
+    games = db.relationship('Game', backref='player', lazy='dynamic')
+    answers = db.relationship('Answer', backref='player', lazy='dynamic')
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    person_id = db.Column(db.String(255), db.ForeignKey(User.email))
+    person_id = db.Column(db.String(255), db.ForeignKey(Player.email))
     answers = db.relationship('Answer', backref='game', lazy='dynamic')
     score = db.Column(db.Float)
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question_id = db.Column(db.String(255), db.ForeignKey(Question.text))
-    user_id = db.Column(db.String(255), db.ForeignKey(User.email))
-    userAnswer = db.Column(db.String(255))
+    player_id = db.Column(db.String(255), db.ForeignKey(Player.email))
+    playerAnswer = db.Column(db.String(255))
     game_id = db.Column(db.Integer, db.ForeignKey(Game.id))
     correct = db.Column(db.Boolean)
     

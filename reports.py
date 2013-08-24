@@ -14,3 +14,9 @@ def calculateCorrectByCategory(answers):
         answersByCategory[answer.question.questionType].append(answer)
     result = {questionType: len([x for x in answersByCategory[questionType] if x.correct])*1.0/len(answersByCategory[questionType])*1.0 for questionType in answersByCategory}
     return result
+
+def getLeaderboard(games):
+    result = defaultdict(lambda : -100)
+    for game in games:
+        result[game.player] = max(result[game.player], game.score)
+    return result

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<table class="leaderboard">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in leaderboard %}
+        <tr>
+            <td>{{ loop.index + 1 }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ leaderboard[user] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
