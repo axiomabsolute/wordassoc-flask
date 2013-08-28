@@ -22,6 +22,12 @@ The front end uses jQuery for DOM manipulation and AJAX calls, and the Foundatio
 2. source venv/bin/activate
 3. python wordassoc.py
 
+## To deploy
+1. heroku login
+  * Provide credentials for an account with Heroku.com
+2. heroku create
+3. git push heroku master
+
 # Dynamism
 Questions are pulled from a JSON file, mapped to an answer-generation scheme tailored to the current user (possibly adjusting for their technologic background), and are different for each game.
 
