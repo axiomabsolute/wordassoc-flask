@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
+    <div class="tech-instructions">
+        <p>The top row of technologies are questions every programmer should know something about.  Pick additional technologies below.</p>
+    </div>
     <div class="base-tech-block">
-        <div style="display: inline-block;">Required</div>
         {% for baseTech in baseTechs %}
         <div class="tech-block always-selected selected">{{ baseTech }}</div> 
         {% endfor %}

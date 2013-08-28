@@ -79,6 +79,14 @@ $two-by-eight-block-width: 44vw;
     }
 }
 
+.tech-instructions { 
+    margin: 0px $four-by-four-block-margin-horiz;
+
+    @media only screen and (orientation: portrait) and (max-width: 500px){
+        margin: 0px $two-by-eight-block-margin-horiz;
+    }
+}
+
 .tech-block {
     @include noselect;
     opacity: .4;
@@ -98,7 +106,9 @@ $two-by-eight-block-width: 44vw;
 }
 
 .tech-block.selected {
-    opacity: 1.0;
+    background: #222;
+    color: white;
+    border: 2px solid #222;
 }
 
 .start-block {

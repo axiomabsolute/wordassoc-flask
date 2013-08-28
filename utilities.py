@@ -46,7 +46,7 @@ mapOfQuestionTypesToAnswerGenerationMethods = {
     "generalProgrammingPrinciples" : generateGeneralAnswers
 }
 
-technologies = ("git","java","javascript","python")
+technologies = ()
 
 """
 Check in the headers dict for the 'X-Requested-With' key, which is added with jQuery AJAX requests, and
