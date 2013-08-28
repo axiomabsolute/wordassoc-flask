@@ -62,7 +62,7 @@
                 //$('.main-content').html('<h3><span style="color:red;">Times Up!</span></h3><h2>Score: ' + score + ' out of ' + answers.length + ' answers.</h2>');
                 /* Display finished modal; disable answers; collect answers, and request report*/
 
-                $('.main-content').html('<h3><span style="color:red;">Times up!</span></h3><form><fieldset><legend>Enter your email address to register and see your results</legend><div class="row"><div class="large-12 columns"><label>Email</label><input class="player-email" type="text" placeholder="example@me.com"><a href="#" class="button submit-results">Register</a></div></div></fieldset></form>');
+                $('.main-content').html('<h3><span style="color:red;">Times up!</span></h3><form><fieldset><legend>Enter your email address to register and see your results</legend><div class="row"><div class="large-12 columns"><label>Email</label><input class="player-email" type="email" placeholder="example@me.com"><a href="#" class="button submit-results">Register</a></div></div></fieldset></form>');
             });
 
         });
@@ -85,11 +85,16 @@
         });
 
         $(document).on('click touchstart', '.submit-results', function(){
-            var player = $('.player-email').val();
-            $.ajax('/result', {"type": "POST", "data": JSON.stringify({"player": player, "answers": answers}), "contentType":'application/json',
-                "success": function(data, stat, xhr){
-                    $('.main-content').html(data); 
-                }});
+            var playerInput = $('.player-email');
+            if (playerInput[0].validity.valid){
+                var player = playerInput.val();
+                $.ajax('/result', {"type": "POST", "data": JSON.stringify({"player": player, "answers": answers}), "contentType":'application/json',
+                    "success": function(data, stat, xhr){
+                        $('.main-content').html(data); 
+                    }});
+            } else {
+                alert("Please provide a valid email address");
+            }
         });
     });
 
