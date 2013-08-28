@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-    <div class="base-tech-block" style="background:#CCC;">
+    <div class="base-tech-block">
+        <div style="display: inline-block;">Required</div>
         {% for baseTech in baseTechs %}
         <div class="tech-block always-selected selected">{{ baseTech }}</div> 
         {% endfor %}
