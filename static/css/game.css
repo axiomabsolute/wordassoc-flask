@@ -20,6 +20,9 @@
   -ms-user-select: none;
   user-select: none; }
 
+.answers {
+  overflow: hidden; }
+
 .question {
   word-wrap: break-word;
   padding: 0px 10px; }

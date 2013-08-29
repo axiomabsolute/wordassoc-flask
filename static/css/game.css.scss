@@ -58,6 +58,10 @@ $two-by-eight-block-width: 44vw;
 
 }
 
+.answers {
+    overflow: hidden;
+}
+
 .question {
     word-wrap: break-word;
     padding: 0px 10px;
