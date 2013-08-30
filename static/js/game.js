@@ -75,11 +75,7 @@
                 });
 
                 // Show the tour
-                $(document).ready(function(){
-                    $(document).foundation('joyride','start', {'postRideCallback': playGame, "modal":true, "expose":true});
-                    $('.joyride-modal-bg').unbind('touchstart');
-                    $('.joyride-modal-bg').unbind('click');
-                });
+                $(document).foundation('joyride','start', {'postRideCallback': playGame, "modal":true, "expose":true});
                 // After the final modal, start the game
             });
 
