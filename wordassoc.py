@@ -33,6 +33,14 @@ def play_game():
     questions = {"questions":question_list}
     return jsonify(questions)
 
+@app.route('/timesup')
+def game_finished_html():
+    return render_template('timesup.html')
+
+@app.route('/baseGameTemplate')
+def base_game_html():
+    return render_template('game.html')
+
 @app.route('/result', methods=["POST"])
 def result():
     data = json.loads(request.data)

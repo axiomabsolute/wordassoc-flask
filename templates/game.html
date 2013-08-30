@@ -1,38 +1,37 @@
-{% extends "layout.html" %}
-{% block body %}
-	<div class="game">
-        <div class="question-block">
-            <div id="timer" class="timer"><div class="progress radius"><span id="timer-region" class="meter"></span></div></div>
-            <hr>
-            <div id="question" class="question"><h3><pre></pre></h3></div>
-            <div class="notifications"></div>
-        </div>
-        <div id="answers" class="answers">
-            <div class="answer-block">Answer 1</div> 
-            <div class="answer-block">Answer 2</div>
-            <div class="answer-block">Answer 3</div>
-            <div class="answer-block">Answer 4</div>
-        </div>
-	</div>
-    <!-- Joyride Demo -->
-    <ol class="joyride-list" data-joyride>
-        <li data-button="Next">
-            <p>Welcome to the word association game!</p>
-            <p>  We're going to walk you through an example question so you know what to expect.</p>
-        </li>
-        <li data-id="question" data-text="Next">
-            <p>A word, phrase, or snippet of code will show up here.</p>
-        </li>
-        <li data-id="answers" data-text="Next">
-            <p>You'll select the word over here that is most associated with it.</p>
-            <p>Since <code>if</code> statements are used to check logic an execute some block of code conditionally, this is the right answer!</p>
-        </li>
-        <li data-id="timer" data-button="Next">
-            <p>Answer carefully, wrong answers will hurt your score, but answer quickly, becuase the more answers you get right before this timer runs out, the higher your score!</p>
-        </li>
-        <li data-button="Start the game!">
-            <p>Questions will be a mix from several different categories.  You may be asked to match a snipped of code to the language it's written in, match some real world scenario to the data structure that naturally represents it, or identify an object oriented design principle.</p>
-            <p>Competition will be fierce, and the game moves fast, so take a moment, focus, and get ready to start!</p>
-        </li>
-    </ol>
-{% endblock %}
+<div class="game">
+    <div class="question-block">
+        <div id="timer" class="timer"><div class="progress radius"><span id="timer-region" class="meter"></span></div></div>
+        <hr>
+        <div id="question" class="question"><h3><pre>if(i == 5){...}</pre></h3></div>
+        <div class="notifications"></div>
+    </div>
+    <div id="answers" class="answers">
+        <div class="answer-block">Iteration</div> 
+        <div class="answer-block answer-correct">Conditional</div>
+        <div class="answer-block">Assignment</div>
+        <div class="answer-block">Composition</div>
+    </div>
+</div>
+<!-- Joyride Demo -->
+<ol class="joyride-list" data-joyride>
+    <li data-button="Next">
+        <p>Welcome to the word association game!</p>
+        <p>  We're going to walk you through an example question so you know what to expect.</p>
+    </li>
+    <li data-id="question" data-text="Next">
+        <p>A word, phrase, or snippet of code will show up here.</p>
+    </li>
+    <li data-id="answers" data-text="Next">
+        <p>You'll select the word over here that is most associated with it.</p>
+    </li>
+    <li data-id="answer-correct" data-text="Next">
+        <p>Since <code>if</code> statements are used to check logic an execute some block of code conditionally, this is the right answer!</p>
+    </li>
+    <li data-id="timer" data-button="Next">
+        <p>Answer carefully, wrong answers will hurt your score, but answer quickly, becuase the more answers you get right before this timer runs out, the higher your score!</p>
+    </li>
+    <li data-button="Start the game!">
+        <p>Questions will be a mix from several different categories.  You may be asked to match a snipped of code to the language it's written in, match some real world scenario to the data structure that naturally represents it, or identify an object oriented design principle.</p>
+        <p>Competition will be fierce, and the game moves fast, so take a moment, focus, and get ready to start!</p>
+    </li>
+</ol>
