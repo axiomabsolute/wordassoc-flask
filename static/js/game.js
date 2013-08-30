@@ -77,9 +77,7 @@
                 // Show the tour
                 $(document).foundation('joyride','start', {postRideCallback: playGame, modal: true, expose: true});
                 // After the final modal, start the game
-                return false; // Stop propagation.
             });
-
         });
 
         $(document).on('click touchstart', '.answer-block', function() {
@@ -111,6 +109,7 @@
                 alert("Please provide a valid email address");
             }
         });
+        return false;
     });
 
     /* Game */
