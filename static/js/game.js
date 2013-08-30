@@ -75,7 +75,7 @@
                 });
 
                 // Show the tour
-                $(document).foundation('joyride','start', {'postRideCallback': playGame});
+                $(document).foundation('joyride','start', {'postRideCallback': playGame, expose:true, modal:true});
                 // After the final modal, start the game
             });
 
