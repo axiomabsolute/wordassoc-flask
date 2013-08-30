@@ -17,6 +17,10 @@ db.init_app(app)
 def login():
     return render_template('login.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/techs')
 def techs():
     resp = render_template('techs.html', supportedTechs=question_bank["technologies"], 

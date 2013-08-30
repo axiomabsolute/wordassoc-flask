@@ -9,11 +9,6 @@
         $('#timer-region').animate({'width':'0%'}, duration, 'linear', callback);
     }
 
-    // Callback function when the game is done
-    function completeGame(){
-
-    }
-
     // Basic exponential easing function, used to slowly change the bar to red
     $.easing.easeInExpo = function(t, millisecondsSince, startValue, endValue, totalDuration){
         //return Math.pow(Math.E, 10*t);
@@ -82,6 +77,7 @@
 
         $(document).on('click touchstart', '.answer-block', function() {
             // Store the answer
+            $(this).css('color','green');
             console.log("The player answered " + $(this).html() + ", actual answer " + questions["questions"][index]["answer"]);
             var currQuestion = questions["questions"][index];
             answers.push({"question" : currQuestion["question"], "playerAnswer" : $(this).html()});
