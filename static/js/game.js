@@ -72,10 +72,10 @@
                 // Fetch empty template for "times up" screen
                 $.get('/timesup', {}, function(data){
                     gameCompleteHtml = data;
+                    // Show the tour
+                    $(document).foundation('joyride','start', {'postRideCallback': playGame, "modal":true, "expose":true});
                 });
 
-                // Show the tour
-                $(document).foundation('joyride','start', {'postRideCallback': playGame, expose:true, modal:true, 'cookieMonster':false});
                 // After the final modal, start the game
             });
 
