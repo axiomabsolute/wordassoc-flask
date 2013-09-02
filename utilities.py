@@ -46,6 +46,14 @@ mapOfQuestionTypesToAnswerGenerationMethods = {
     "generalProgrammingPrinciples" : generateGeneralAnswers
 }
 
+mapOfQuestionTypesToDisplayName = {
+    "snippetToTech" : "Match code snippet to technology",
+    "everydayDataStructs" : "Match everyday application to data structure",
+    "snippetToOODConcept" : "Match code snippet to OOD concept",
+    "algorithmToType" : "Match algorithm to it's type",
+    "generalProgrammingPrinciples" : "Match code snippet to general programming principles"
+}
+
 technologies = ()
 
 """
