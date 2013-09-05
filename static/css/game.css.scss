@@ -11,6 +11,7 @@ $two-by-eight-block-margin-horiz: 3vw;
 $two-by-eight-block-height: 10.5vh;
 $two-by-eight-block-width: 44vw;
 
+$whiteish: rgba(255,255,255,0.95);
 
 /* Mixins */
 @mixin noselect {
@@ -36,9 +37,46 @@ $two-by-eight-block-width: 44vw;
     }
 }
 
+@mixin text-block {
+    background-color: $whiteish;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Basic styles */
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    @media all and (orientation: landscape){
+        background-image: url(/static/img/lighthouse.jpg);
+    }
+    @media all and (orientation: portrait){
+        background-image: url(/static/img/lighthouse-rotate.jpg);
+    }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #DDD;
+    background-attachment: fixed;
+}
+
 /* Semantic Elements */
+.main-content {
+    overflow: auto; // Hack to fix sizing of div's with floated elemnts
+    padding-bottom: 50px;
+}
+
 .intro {
     padding: 10px;
+
+    .intro-text {
+        @include text-block;
+        p {
+            font-size: 18px;
+        }
+    }
 }
 
 .top-bar {
@@ -50,10 +88,17 @@ $two-by-eight-block-width: 44vw;
     
 }
 
+.joyride-content-wrapper {
+    code {
+        color: #F2674B;
+    }
+}
+
 .answer-block {
     text-align: center;
     border: 2px solid gray;
     border-radius: 4px;
+    background-color: $whiteish;
     @include noselect;
 
 }
@@ -64,7 +109,8 @@ $two-by-eight-block-width: 44vw;
 
 .question {
     word-wrap: break-word;
-    padding: 0px 10px;
+    padding: 20px;
+    font-family: 'Inconsolata', sans-serif;
 }
 
 .question-block {
@@ -72,6 +118,7 @@ $two-by-eight-block-width: 44vw;
     border: 2px solid gray;
     border-radius: 4px;
     margin-left: 1vw;
+    background-color: $whiteish;
 }
 
 .tech-block, .start-block {
@@ -84,6 +131,7 @@ $two-by-eight-block-width: 44vw;
 }
 
 .tech-instructions { 
+    @include text-block;
     margin: 0px $four-by-four-block-margin-horiz;
 
     @media only screen and (orientation: portrait) and (max-width: 500px){
@@ -93,7 +141,8 @@ $two-by-eight-block-width: 44vw;
 
 .tech-block {
     @include noselect;
-    border: 2px solid black;
+    border: 2px solid $whiteish;
+    background-color: $whiteish;
 }
 
 .tech-block always-selected {
@@ -154,4 +203,29 @@ $two-by-eight-block-width: 44vw;
 
 .about-content {
     margin: 0px 20px;
+}
+
+.cc-license-tag {
+    position: fixed;
+    bottom: 0;
+    color: white;
+}
+
+.timesup-content {
+    background-color: $whiteish;
+    margin: 14px;
+    padding: 8px 20px;
+}
+
+.report-content {
+    background-color: $whiteish;
+    margin: 14px;
+    padding: 8px 20px;
+}
+
+.leaderboard-content {
+    background-color: $whiteish;
+    margin: 14px;
+    padding: 8px 20px;
+    display: inline-block;
 }

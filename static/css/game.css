@@ -1,18 +1,49 @@
 /* Variables */
 /* Tech blocks */
 /* Mixins */
+/* Basic styles */
+* {
+  font-family: 'Lato', sans-serif; }
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #DDD;
+  background-attachment: fixed; }
+  @media all and (orientation: landscape) {
+    body {
+      background-image: url(/static/img/lighthouse.jpg); } }
+  @media all and (orientation: portrait) {
+    body {
+      background-image: url(/static/img/lighthouse-rotate.jpg); } }
+
 /* Semantic Elements */
+.main-content {
+  overflow: auto;
+  padding-bottom: 50px; }
+
 .intro {
   padding: 10px; }
+  .intro .intro-text {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px; }
+    .intro .intro-text p {
+      font-size: 18px; }
 
 @media only screen and (min-height: 570px) {
   .top-bar {
     max-height: 10vh; } }
 
+.joyride-content-wrapper code {
+  color: #F2674B; }
+
 .answer-block {
   text-align: center;
   border: 2px solid gray;
   border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.95);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -25,13 +56,15 @@
 
 .question {
   word-wrap: break-word;
-  padding: 0px 10px; }
+  padding: 20px;
+  font-family: 'Inconsolata', sans-serif; }
 
 .question-block {
   text-align: left;
   border: 2px solid gray;
   border-radius: 4px;
-  margin-left: 1vw; }
+  margin-left: 1vw;
+  background-color: rgba(255, 255, 255, 0.95); }
 
 .tech-block, .start-block {
   text-align: center;
@@ -50,6 +83,10 @@
       padding-top: 5vh; } }
 
 .tech-instructions {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
   margin: 0px 3vw; }
   @media only screen and (orientation: portrait) and (max-width: 500px) {
     .tech-instructions {
@@ -62,7 +99,8 @@
   -moz-user-select: moz-none;
   -ms-user-select: none;
   user-select: none;
-  border: 2px solid black; }
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.95); }
 
 .tech-block always-selected {
   border: 2px solid black; }
@@ -109,3 +147,24 @@
     margin: 2vh 2vw; } }
 .about-content {
   margin: 0px 20px; }
+
+.cc-license-tag {
+  position: fixed;
+  bottom: 0;
+  color: white; }
+
+.timesup-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  margin: 14px;
+  padding: 8px 20px; }
+
+.report-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  margin: 14px;
+  padding: 8px 20px; }
+
+.leaderboard-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  margin: 14px;
+  padding: 8px 20px;
+  display: inline-block; }

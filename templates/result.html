@@ -1,43 +1,44 @@
 {% block body %}
-    <!-- Maybe do something with tiles and a flow layout -->
-    <div class="row">
-        <h2>How'd you do?</h2>
-        <h2>{{ correct_answers }} answer correct out of {{ total_answers }}</h2>
-        <h2>Score: {{ game_score }}</h2>
-        <h2>Current Standing: {{ standing }} of {{ total_games }}</h2>
-    </div>
-    <div class="row">
-        <ul>
-            {% for tech in accuracyByTech %}
-            <li>{{ mapOfQuestionTypesToDisplayName[tech] }} : {{ accuracyByTech[tech]*100 }}%</li>
-            {% endfor %}
-            {% for type in accuracyByCategory %}
-            <li>{{ mapOfQuestionTypesToDisplayName[type] }} : {{ accuracyByCategory[type]*100 }}%</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="row">
-        <table>
-            <thead>
-                <tr>
-                    <th>Question</th>
-                    <th>Your Answer</th>
-                    <th>Correct Answer</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for questionResult in questionTableData %}
-                <tr>
-                    <td><pre>{{ questionResult["question"] }}</pre></td>
-                    <td>{{ questionResult["answer"] }}</td>
-                    <td>{{ questionResult["userAnswer"] }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="row">
-        <a href="" class="button">Done</a>
-        <a href="/leaderboard" class="button">Leaderboard</a>
+    <div class="report-content">
+        <div class="row">
+            <h2>How'd you do?</h2>
+            <h2>{{ correct_answers }} answer correct out of {{ total_answers }}</h2>
+            <h2>Score: {{ game_score }}</h2>
+            <h2>Current Standing: {{ standing }} of {{ total_games }}</h2>
+        </div>
+        <div class="row">
+            <ul>
+                {% for tech in accuracyByTech %}
+                <li>{{ mapOfQuestionTypesToDisplayName[tech] }} : {{ accuracyByTech[tech]*100 }}%</li>
+                {% endfor %}
+                {% for type in accuracyByCategory %}
+                <li>{{ mapOfQuestionTypesToDisplayName[type] }} : {{ accuracyByCategory[type]*100 }}%</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Your Answer</th>
+                        <th>Correct Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for questionResult in questionTableData %}
+                    <tr>
+                        <td><pre>{{ questionResult["question"] }}</pre></td>
+                        <td>{{ questionResult["answer"] }}</td>
+                        <td>{{ questionResult["userAnswer"] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="" class="button">Done</a>
+            <a href="/leaderboard" class="button">Leaderboard</a>
+        </div>
     </div>
 {% endblock %}
