@@ -51,10 +51,10 @@ $whiteish: rgba(255,255,255,0.95);
 
 body {
     @media all and (orientation: landscape){
-        background-image: url(/static/img/lighthouse.jpg);
+        background-image: url(/static/img/lighthouse-smaller.jpg);
     }
     @media all and (orientation: portrait){
-        background-image: url(/static/img/lighthouse-rotate.jpg);
+        background-image: url(/static/img/lighthouse-rotate-smaller.jpg);
     }
     background-size: cover;
     background-repeat: no-repeat;

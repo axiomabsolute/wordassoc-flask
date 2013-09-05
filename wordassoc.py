@@ -86,10 +86,13 @@ def leaderboard():
     return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))
 
 def reloadDb():
+    print("Dropping all dables.")
     db.drop_all()
     db.session.commit()
+    print("Creating tables for each model");
     db.create_all()
     db.session.commit()
+    print("Syncing questions")
     Question.loadQuestionsIntoDb(question_bank['questions'])
 
 def syncQuestions():

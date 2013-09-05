@@ -12,10 +12,10 @@ body {
   background-attachment: fixed; }
   @media all and (orientation: landscape) {
     body {
-      background-image: url(/static/img/lighthouse.jpg); } }
+      background-image: url(/static/img/lighthouse-smaller.jpg); } }
   @media all and (orientation: portrait) {
     body {
-      background-image: url(/static/img/lighthouse-rotate.jpg); } }
+      background-image: url(/static/img/lighthouse-rotate-smaller.jpg); } }
 
 /* Semantic Elements */
 .main-content {

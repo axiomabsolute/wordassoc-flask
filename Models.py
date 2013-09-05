@@ -31,6 +31,8 @@ class Question(db.Model):
             print("Committing questions")
             db.session.commit()
             print("Questions synced")
+        else:
+            print("Question table appears to be synced at " + str(len(Question.query.all())) + " questions.")
 
 class Player(db.Model):
     email = db.Column(db.String(255), primary_key=True)
