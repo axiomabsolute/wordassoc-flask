@@ -85,6 +85,16 @@ def result():
 def leaderboard():
     return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))
 
+def reloadDb():
+    db.drop_all()
+    db.session.commit()
+    db.create_all()
+    db.session.commit()
+    Question.loadQuestionsIntoDb(question_bank['questions'])
+
+def syncQuestions():
+    Question.loadQuestionsIntoDb(question_bank['questions'])
+
 if __name__ == '__main__':
     db.create_all()
     db.session.commit()

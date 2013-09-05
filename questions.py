@@ -141,11 +141,6 @@ question_bank = {"questions":
             "question_type": "snippetToTech"
         },
         {
-            "question": "[1,2]",
-            "answer": "matlab",
-            "question_type": "snippetToTech"
-        },
-        {
             "question": "[1,2;3,4;]^2",
             "answer": "matlab",
             "question_type": "snippetToTech"

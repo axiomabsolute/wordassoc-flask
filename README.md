@@ -50,4 +50,10 @@ The game is silly and simple, but we hope the resulting data can help give both 
 1. heroku addons:add heroku-postresql:dev
 1. heroku pg:promote `heroku_postgresql_color_url`  _Note: replace this with whatever "color" url they give you_
 
+# Cleaning out the database
+1. heroku run python
+1. import wordassoc
+1. wordassoc.reloadDb() or wordassoc.syncQuestions()
+    * Reload drops the entire db and recreates (deletes all current standings).  Sync questions should not drop current user data
+
 That's it!
