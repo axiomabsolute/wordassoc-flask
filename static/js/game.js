@@ -41,7 +41,7 @@
         var index = 0; // The current question
         var answers = [];
         var gameCompleteHtml = "";
-        $.get('/game', {"techs": selectedTechs}, function(data, stat, xhr){
+        $.get('/game', {"techs": selectedTechs.join(",")}, function(data, stat, xhr){
             questions = data;
             // Render base template, which requires asynchronous call to get the template from the server.
             // Then start the game

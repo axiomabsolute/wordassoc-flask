@@ -33,6 +33,8 @@ def play_game():
     techs = request.args.get('techs', None)
     if not techs:
         techs = technologies
+    else:
+        techs = techs.split(',')
     question_list = generateQuestions(techs)
     questions = {"questions":question_list}
     return jsonify(questions)
