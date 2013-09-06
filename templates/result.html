@@ -29,8 +29,8 @@
                 {% for questionResult in questionTableData %}
                     <tr>
                         <td><pre>{{ questionResult["question"] }}</pre></td>
-                        <td>{{ questionResult["answer"] }}</td>
                         <td>{{ questionResult["userAnswer"] }}</td>
+                        <td>{{ questionResult["answer"] }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -232,7 +232,7 @@ question_bank = {"questions":
         },
         {
             "question": "phone book",
-            "answer": "tree",
+            "answer": "map",
             "question_type": "everydayDataStructs"
         },
         {
@@ -242,7 +242,7 @@ question_bank = {"questions":
         },
         {
             "question": "bookmarks",
-            "answer": "set",
+            "answer": "map",
             "question_type": "everydayDataStructs"
         },
         {
