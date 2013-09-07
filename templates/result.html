@@ -12,9 +12,14 @@
                 <li>{{ mapOfQuestionTypesToDisplayName[tech] or tech }} : {{ accuracyByTech[tech]*100 }}%</li>
                 {% endfor %}
                 {% for type in accuracyByCategory %}
-                <li>{{ mapOfQuestionTypesToDisplayName[type] or tech }} : {{ accuracyByCategory[type]*100 }}%</li>
+                <li>{{ mapOfQuestionTypesToDisplayName[type] or tech }} : {{ "%.1f" % (accuracyByCategory[type]*100.0) }}%</li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class="row">
+            <div id="tech-scores">
+
+            </div>
         </div>
         <div class="row">
             <table>

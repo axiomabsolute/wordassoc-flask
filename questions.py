@@ -61,7 +61,7 @@ question_bank = {"questions":
             "question_type": "snippetToTech"
         },
         {
-            "question": "def infinite\n\tx=1\n\tyield x\n\tx=x+1",
+            "question": "def infinite:\n\tx=1\n\tyield x\n\tx=x+1",
             "answer": "python",
             "question_type": "snippetToTech"
         },

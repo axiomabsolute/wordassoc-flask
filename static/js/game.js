@@ -108,10 +108,6 @@
         return false;
     });
 
-    /* Game */
-    // Show "Ready", "Start", then start the game.
-
-
     // Helper functions
     function renderBaseGameTemplate(callback){
         // Compiled via doT; fix this.
