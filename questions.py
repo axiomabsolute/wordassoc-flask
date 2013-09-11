@@ -186,7 +186,12 @@ question_bank = {
       "question_type": "snippetToTech"
     },
     {
-      "question": "",
+      "question": ".NET",
+      "answer": "c#",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "CLR",
       "answer": "c#",
       "question_type": "snippetToTech"
     },
@@ -206,6 +211,11 @@ question_bank = {
       "question_type": "snippetToTech"
     },
     {
+      "question": "var myList = new List<int>();",
+      "answer": "c#",
+      "question_type": "snippetToTech"
+    },
+    {
       "question": "namespace org.foo",
       "answer": "c#",
       "question_type": "snippetToTech"
@@ -221,7 +231,17 @@ question_bank = {
       "question_type": "everydayDataStructs"
     },
     {
-      "question": "order of deck of cards",
+      "question": "order of a deck of cards",
+      "answer": "list",
+      "question_type": "everydayDataStructs"
+    },
+    {
+      "question": "steps in a recipe",
+      "answer": "list",
+      "question_type": "everydayDataStructs"
+    },
+    {
+      "question": "back button history in browser",
       "answer": "list",
       "question_type": "everydayDataStructs"
     },
@@ -246,7 +266,7 @@ question_bank = {
       "question_type": "everydayDataStructs"
     },
     {
-      "question": "Index",
+      "question": "index",
       "answer": "map",
       "question_type": "everydayDataStructs"
     },
@@ -331,8 +351,18 @@ question_bank = {
       "question_type": "snippetToOODConcept"
     },
     {
-      "question": "Instance of a class",
+      "question": "instance of a class",
       "answer": "object",
+      "question_type": "snippetToOODConcept"
+    },
+    {
+      "question": "definition of similar objects",
+      "answer": "class",
+      "question_type": "snippetToOODConcept"
+    },
+    {
+      "question": "class with some missing implementation",
+      "answer": "abstract class",
       "question_type": "snippetToOODConcept"
     },
     {
@@ -358,6 +388,21 @@ question_bank = {
     {
       "question": "Thread synchronization primitive",
       "answer": "mutex",
+      "question_type": "generalProgrammingPrinciples"
+    },
+    {
+      "question": "cleaning up unused memory",
+      "answer": "garbage collection",
+      "question_type": "generalProgrammingPrinciples"
+    },
+    {
+      "question": "compile time type verification",
+      "answer": "static typing",
+      "question_type": "generalProgrammingPrinciples"
+    },
+    {
+      "question": "runtime type verification",
+      "answer": "dynamic typing",
       "question_type": "generalProgrammingPrinciples"
     },
     {
@@ -387,6 +432,16 @@ question_bank = {
     },
     {
       "question": "class A: public B{...};",
+      "answer": "c/c++",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "friend void myFunction();",
+      "answer": "c/c++",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "malloc",
       "answer": "c/c++",
       "question_type": "snippetToTech"
     },
@@ -436,7 +491,9 @@ question_bank = {
     "overriding",
     "encapsulation",
     "polymorphism",
-    "object"
+    "object",
+    "class",
+    "abstract class"
   ],
   "general-programming-principles": [
     "generic types",
@@ -444,7 +501,9 @@ question_bank = {
     "iteration",
     "type declaration",
     "mutex",
-
+    "garbage collection",
+    "static typing",
+    "dynamic typing"
   ],
   "technologies": [
     "git",
