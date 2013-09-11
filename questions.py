@@ -36,6 +36,16 @@ question_bank = {
       "question_type": "snippetToTech"
     },
     {
+      "question": "merge",
+      "answer": "git",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "rebase",
+      "answer": "git",
+      "question_type": "snippetToTech"
+    },
+    {
       "question": "[x for x in range(12)]",
       "answer": "python",
       "question_type": "snippetToTech"
@@ -67,6 +77,11 @@ question_bank = {
     },
     {
       "question": "if....elif....else....",
+      "answer": "python",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "#Comments",
       "answer": "python",
       "question_type": "snippetToTech"
     },
@@ -121,7 +136,22 @@ question_bank = {
       "question_type": "snippetToTech"
     },
     {
+      "question": "prototypal inheritance",
+      "answer": "javascript",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "/match/.test('matches!')",
+      "answer": "javascript",
+      "question_type": "snippetToTech"
+    },
+    {
       "question": "(1:3:21).*2",
+      "answer": "matlab",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "%Comments",
       "answer": "matlab",
       "question_type": "snippetToTech"
     },
@@ -172,6 +202,26 @@ question_bank = {
     },
     {
       "question": "JVM",
+      "answer": "java",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "a.equals(b)",
+      "answer": "java",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "a instanceof MyClass",
+      "answer": "java",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "class Foo extends Bar",
+      "answer": "java",
+      "question_type": "snippetToTech"
+    },
+    {
+      "question": "protected void finalize() throws Throwable{...}",
       "answer": "java",
       "question_type": "snippetToTech"
     },
