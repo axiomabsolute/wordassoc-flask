@@ -61,6 +61,9 @@ def result():
     correct_answers = 0
     for a in answers:
         question = Question.query.get(a["question"])
+        if not question:
+            print("ERROR - Missing question : " + str(a["question"]))
+            continue
         correct_answer = a["playerAnswer"]==question.correctAnswer
         answer = Answer(playerAnswer=a["playerAnswer"], player=Player.query.get(email), question=question, game=game, correct=correct_answer)
         question_table_data.append({"question": question.text, "answer": question.correctAnswer, "userAnswer": a["playerAnswer"]})

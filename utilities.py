@@ -42,7 +42,7 @@ mapOfQuestionTypesToAnswerGenerationMethods = {
     "snippetToTech" : generateTechAnswers,
     "everydayDataStructs" : generateDataStructAnswers,
     "snippetToOODConcept" : generateOODConceptAnswers,
-    "algorithmToType" : generateAlgorithmAnswers,
+    "algorithmToBigO" : generateAlgorithmAnswers,
     "generalProgrammingPrinciples" : generateGeneralAnswers
 }
 
@@ -50,7 +50,7 @@ mapOfQuestionTypesToDisplayName = {
     "snippetToTech" : "Match code snippet to technology",
     "everydayDataStructs" : "Match everyday application to data structure",
     "snippetToOODConcept" : "Match code snippet to OOD concept",
-    "algorithmToType" : "Match algorithm to it's type",
+    "algorithmToBigO" : "Match algorithm to Big-O runtime",
     "generalProgrammingPrinciples" : "Match code snippet to general programming principles"
 }
 
