@@ -73,6 +73,7 @@ def generateQuestions(techs):
     then randomly select to fill up the space.
     """
     questions = []
+    questionSet = set()
     questions_sample = sample(question_bank["questions"], 60)
     for q in questions_sample:
         if q["question_type"] == "snippetToTech":
@@ -83,7 +84,22 @@ def generateQuestions(techs):
         q = q.copy()
         q["options"] = generateAnswers(q)
         questions.append(q)
-    # Make sure we get at least 60 questions.
+        questionSet.add(q["question"])
+    # Make sure we get at least 20 different questions.
+    while len(questionSet) < 20:
+        question = choice(question_bank["questions"])
+        if question["question_type"] == "snippetToTech":
+            if len(techs)<4:
+                continue
+            if question["answer"] not in techs:
+                continue
+        if question["question"] in questionSet:
+            continue
+        question = question.copy()
+        question["options"] = generateAnswers(question)
+        questions.append(question)
+        questionSet.add(question["question"])
+    # Make sure there's at least 60 questions total
     while len(questions) < 60:
         question = choice(question_bank["questions"])
         if question["question_type"] == "snippetToTech":
@@ -94,5 +110,5 @@ def generateQuestions(techs):
         question = question.copy()
         question["options"] = generateAnswers(question)
         questions.append(question)
-    return questions
+    return list(questions)
 
