@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, session, abort, jsonify
+from flask import Flask, render_template, request, session, abort, jsonify, json
 from flask.ext.sqlalchemy import SQLAlchemy
 from Models import db, Player, Question, Answer, Game
 from utilities import question_bank, technologies, generateQuestions, is_xmlhttp_request, mapOfQuestionTypesToDisplayName
-from reports import calculateAccuracyByTech, calculateCorrectByCategory, getLeaderboard
+from reports import calculateAccuracyByTech, calculateCorrectByCategory, getLeaderboard, countQuestionsByType
 import os
 import json
 
@@ -82,11 +82,58 @@ def result():
     total_games = Game.query.count()
     accuracyByTech = calculateAccuracyByTech(game.answers)
     accuracyByQuestionType = calculateCorrectByCategory(game.answers)
-    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers, game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech, accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName)
+    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers,
+            game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech,
+            accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, 
+            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName)
 
 @app.route('/leaderboard')
 def leaderboard():
     return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))
+
+@app.route('/result_debug')
+def result_debug():
+    """
+    Get's the highest scoring game for the user and renders the results.  Used only for debugging (to prevent giving away other people's information)
+    """
+    if not app.debug:
+        abort(403)
+    user_email = request.args.get('user', None)
+    if not user_email:
+        abort(400)
+    game = Game.query.filter_by(person_id=user_email).order_by(Game.score).first()
+    if not game:
+        abort(404)
+    gameId = game.id
+    answers = db.session.query(Answer).filter(Answer.game_id==gameId).join(Question).all()
+    # Various default fields required for the template
+    total_answers = 0
+    correct_answers = 0
+    accuracyByTech = 0
+    accuracyByCategory = 0
+    question_table_data = []
+    questionCountsByType = {};
+    game_score = game.score
+    standing = Game.query.filter(Game.score>game.score).count()+1
+    total_games = Game.query.count()
+    for a in answers:
+        question_table_data.append({"question": a.question_id, "answer": a.question.correctAnswer, "userAnswer": a.playerAnswer})
+        if a.correct:
+            correct_answers = correct_answers + 1
+        total_answers = total_answers + 1
+    questionCountsByType = countQuestionsByType(answers)
+    accuracyByTech = calculateAccuracyByTech(answers)
+    accuracyByQuestionType = calculateCorrectByCategory(answers)
+    visualization_data = {"total_answers": total_answers, "correct_answers": correct_answers, 
+            "accuracyByTech": accuracyByTech, "accuracyByCategory": accuracyByCategory, "game_score": game_score, 
+            "standing": standing, "total_games": total_games, "question_table_data": question_table_data,
+            "questionCountsByType": questionCountsByType}
+    return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers,
+            game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech,
+            accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, 
+            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, debugMode=True, visualization_data=json.dumps(visualization_data))
+
+        
 
 def reloadDb():
     print("Dropping all dables.")

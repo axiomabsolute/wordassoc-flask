@@ -38,6 +38,28 @@ def generateGeneralAnswers(question):
 def generateAnswers(question):
     return mapOfQuestionTypesToAnswerGenerationMethods[question["question_type"]](question)
 
+def generateGameStats(email, answers):
+    for a in answers:
+        question = Question.query.get(a["question"])
+        if not question:
+            print("ERROR - Missing question : " + str(a["question"]))
+            continue
+        correct_answer = a["playerAnswer"]==question.correctAnswer
+        answer = Answer(playerAnswer=a["playerAnswer"], player=Player.query.get(email), question=question, game=game, correct=correct_answer)
+        question_table_data.append({"question": question.text, "answer": question.correctAnswer, "userAnswer": a["playerAnswer"]})
+        if correct_answer:
+            correct_answers = correct_answers + 1
+        total_answers = total_answers + 1
+        player.answers.append(answer)
+        db.session.add(answer)
+    # Calculate the game score
+    game.score = score=correct_answers - (0.25 * (total_answers - correct_answers))
+    # Render results
+    standing = Game.query.filter(Game.score>game.score).count() + 1
+    total_games = Game.query.count()
+    accuracyByTech = calculateAccuracyByTech(game.answers)
+    accuracyByQuestionType = calculateCorrectByCategory(game.answers)
+
 mapOfQuestionTypesToAnswerGenerationMethods = {
     "snippetToTech" : generateTechAnswers,
     "everydayDataStructs" : generateDataStructAnswers,

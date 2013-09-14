@@ -21,3 +21,12 @@ def getLeaderboard(games):
         result[game.player] = max(result[game.player], game.score)
     result = [{"user": p, "score":result[p]} for p in result]
     return [x for x in reversed(sorted(result,key=lambda x: x["score"]))]
+
+def countQuestionsByType(answers):
+    countsByType = defaultdict(lambda : 0)
+    for answer in answers:
+        if answer.question.questionType == "snippetToTech":
+            countsByType[answer.question.correctAnswer] += 1
+        else:
+            countsByType[answer.question.questionType] += 1
+    return countsByType
