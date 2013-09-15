@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, session, abort, jsonify, json
 from flask.ext.sqlalchemy import SQLAlchemy
 from Models import db, Player, Question, Answer, Game
-from utilities import question_bank, technologies, generateQuestions, is_xmlhttp_request, mapOfQuestionTypesToDisplayName
-from reports import calculateAccuracyByTech, calculateCorrectByCategory, getLeaderboard, countQuestionsByType
+from utilities import question_bank, technologies, generateQuestions, is_xmlhttp_request, mapOfQuestionTypesToDisplayName, mapOfQuestionTypesToShortName
+from reports import calculateAccuracyByTech, calculateCorrectByCategory, getLeaderboard, countQuestionsByType, calculateCorrect
 import os
 import json
 
@@ -80,12 +80,19 @@ def result():
     # Render results
     standing = Game.query.filter(Game.score>game.score).count() + 1
     total_games = Game.query.count()
+    questionCountsByType = countQuestionsByType(game.answers, mapOfQuestionTypesToShortName)
     accuracyByTech = calculateAccuracyByTech(game.answers)
     accuracyByQuestionType = calculateCorrectByCategory(game.answers)
+    accuracyByLabel = calculateCorrect(game.answers, mapOfQuestionTypesToShortName)
+    visualization_data = {"total_answers": total_answers, "correct_answers": correct_answers, 
+            "accuracyByTech": accuracyByTech, "accuracyByCategory": accuracyByQuestionType, "game_score": game.score, 
+            "standing": standing, "total_games": total_games, "question_table_data": question_table_data,
+            "questionCountsByType": questionCountsByType, "accuracyByLabel": accuracyByLabel}
     return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers,
             game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech,
             accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, 
-            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName)
+            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, debugMode=True, visualization_data=json.dumps(visualization_data),
+            mapOfQuestionTypesToShortName=mapOfQuestionTypesToShortName, accuracyByLabel=accuracyByLabel)
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -110,7 +117,7 @@ def result_debug():
     total_answers = 0
     correct_answers = 0
     accuracyByTech = 0
-    accuracyByCategory = 0
+    accuracyByQuestionType = 0
     question_table_data = []
     questionCountsByType = {};
     game_score = game.score
@@ -121,17 +128,19 @@ def result_debug():
         if a.correct:
             correct_answers = correct_answers + 1
         total_answers = total_answers + 1
-    questionCountsByType = countQuestionsByType(answers)
+    questionCountsByType = countQuestionsByType(answers, mapOfQuestionTypesToShortName)
     accuracyByTech = calculateAccuracyByTech(answers)
     accuracyByQuestionType = calculateCorrectByCategory(answers)
+    accuracyByLabel = calculateCorrect(answers, mapOfQuestionTypesToShortName)
     visualization_data = {"total_answers": total_answers, "correct_answers": correct_answers, 
-            "accuracyByTech": accuracyByTech, "accuracyByCategory": accuracyByCategory, "game_score": game_score, 
+            "accuracyByTech": accuracyByTech, "accuracyByCategory": accuracyByQuestionType, "game_score": game_score, 
             "standing": standing, "total_games": total_games, "question_table_data": question_table_data,
-            "questionCountsByType": questionCountsByType}
+            "questionCountsByType": questionCountsByType, "accuracyByLabel": accuracyByLabel}
     return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers,
             game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech,
             accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, 
-            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, debugMode=True, visualization_data=json.dumps(visualization_data))
+            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, debugMode=True, visualization_data=json.dumps(visualization_data),
+            mapOfQuestionTypesToShortName=mapOfQuestionTypesToShortName, accuracyByLabel=accuracyByLabel)
 
         
 

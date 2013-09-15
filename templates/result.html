@@ -11,16 +11,7 @@
         </div>
         <div class="row">
             <div id="questionCountsByType"></div>
-        </div>
-        <div class="row">
-            <ul>
-                {% for tech in accuracyByTech %}
-                <li>{{ mapOfQuestionTypesToDisplayName[tech] or tech }} : {{ accuracyByTech[tech]*100 }}%</li>
-                {% endfor %}
-                {% for type in accuracyByCategory %}
-                <li>{{ mapOfQuestionTypesToDisplayName[type] or tech }} : {{ "%.1f" % (accuracyByCategory[type]*100.0) }}%</li>
-                {% endfor %}
-            </ul>
+            <div id="percentCorrectByType"></div>
         </div>
         <div class="row">
             <div id="tech-scores">
@@ -57,17 +48,17 @@
         var visualization_data = {{ visualization_data|safe }};
         window.WordAssoc["visualization_data"] = visualization_data;
 
+        var colors = d3.scale.ordinal()
+            .range(["042A3d", "#0d435d", "#3e8aae", "#634700", "#EdB013", "#F6c74c", "#9a2506", "#Ed4013", "#DD5646"]);
+
         console.log(visualization_data);
 
-        {% if debugMode %}
-
         function renderPie(data, valueKey, labelKey, selector){
+            var margin = {top: 40, right: 20, bottom: 20, left: 20};
+
             var width = 400,
                 height = 400,
-                radius = Math.min(width, height)/2;
-
-            var color = d3.scale.ordinal()
-                .range(["98abc5", "#8a89a6", "7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+                radius = Math.min(width - margin["right"] - margin["left"], height - margin["top"] - margin["bottom"])/2;
 
             var arc = d3.svg.arc()
                 .outerRadius(radius - 10)
@@ -77,13 +68,11 @@
                 .sort(null)
                 .value(function(d){ return d[valueKey]; });
 
-            console.log(data);
-
             var svg = d3.select(selector).append("svg")
                         .attr("width", width)
                         .attr("height", height)
                         .append("g")
-                        .attr("transform", "translate(" + width/2 + "," + height /2 + ")");
+                        .attr("transform", "translate(" + (margin["left"] + margin["right"] + width)/2 + "," + (height + margin["top"] + margin["bottom"]) /2 + ")");
 
             var g = svg.selectAll(".arc")
                         .data(pie(data))
@@ -92,19 +81,104 @@
 
             g.append("path")
                 .attr("d", arc)
-                .style("fill", function(d) { return color(d.data[labelKey]); });
+                .style("fill", function(d) { return colors(d.data[labelKey]); });
 
             g.append("text")
                 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
                 .attr("dy", ".35em")
                 .style("text-anchor","middle")
+                .style("fill","#FFFFFF")
                 .text(function(d) { return d.data[labelKey]; });
+
+            svg.append("text")
+                .attr("x", 0)             
+                .attr("y", 0 - (height/2) + margin["top"]/2 )
+                .attr("text-anchor", "middle")  
+                .style("font-size", "16px") 
+                .style("text-decoration", "underline")  
+                .text("Num Questions by Type");
         }
 
-        //renderPie(visualization_data["accuracyByTech"], "accuracy", "tech", "#accuracyByTechPie");
-        renderPie(d3.map(visualization_data["questionCountsByType"]).entries(), "value", "key", "#questionCountsByType");
+        function renderPercentBars(data, valueAccessor, labelAccessor, selector){
+            var height = 300,
+                width = 300;
 
-        {% endif %}
+            var margin = {top: 80, right: 40, bottom: 10, left: 40};
+
+            var x = d3.scale.linear()
+                        .domain([0.0,1.0])
+                        .range([0, width]);
+
+            console.log(data.map(function(d){return d[labelAccessor];}));
+
+            var y = d3.scale.ordinal()
+                        .domain(data.map(function(d) { return d[labelAccessor];}))
+                        .rangeRoundBands([0, height], .2);
+
+            var xAxis = d3.svg.axis()
+                            .scale(x)
+                            .orient("top")
+                            .tickFormat(d3.format(".0%"));
+
+            var svg = d3.select(selector).append("svg")
+                        .attr("width", width + margin.left + margin.right)
+                        .attr("height", height + margin.top + margin.bottom)
+                        .append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var g = svg.selectAll(".bar")
+                        .data(data)
+                        .enter().append("g")
+                        .attr("class", "bar");
+
+            g.append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(Math.min(0, d[valueAccessor])); })
+                .attr("y", function(d) { return y(d[labelAccessor])})
+                .attr("width", function(d) { return Math.abs(x(d.value) - x(0)); })
+                .attr("height", y.rangeBand())
+                .style("fill", function(d) { return colors(d[labelAccessor]); });
+
+            g.append("text")
+                .attr("dy", ".35em")
+                .attr("y", function(d){ return y(d[labelAccessor]) + (y.rangeBand()/2);})
+                .attr("x", 10)
+                .style("fill", "#FFFFFF")
+                .text(function(d){ return d[labelAccessor]; });
+
+            console.log(y.rangeBand()/2)
+
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .call(xAxis)
+                .selectAll("text")
+                .attr("y", "0")
+                .attr("x", "4")
+                .attr("transform", "rotate(90)")
+                .style("text-anchor", "end");
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .append("line")
+                .attr("x1", x(0))
+                .attr("x2", x(0))
+                .attr("y2", height);
+
+            svg.append("text")
+                .attr("x", (width / 2))             
+                .attr("y", 0 - (margin.top / 2))
+                .attr("text-anchor", "middle")  
+                .style("font-size", "16px") 
+                .style("text-decoration", "underline")  
+                .text("Percent Correct by Question Type");
+            
+            svg.selectAll(".domain")
+                .style("visibility", "hidden");
+        }
+
+        renderPie(d3.map(visualization_data["questionCountsByType"]).entries(), "value", "key", "#questionCountsByType");
+        renderPercentBars(d3.map(visualization_data["accuracyByLabel"]).entries(), "value", "key", "#percentCorrectByType");
 
     </script>
 {% endblock %}

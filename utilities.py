@@ -76,6 +76,19 @@ mapOfQuestionTypesToDisplayName = {
     "generalProgrammingPrinciples" : "Match code snippet to general programming principles"
 }
 
+mapOfQuestionTypesToShortName = {
+    "git": "git",
+    "java": "java",
+    "python": "py",
+    "javascript": "js",
+    "c/c++": "cpp",
+    "matlab": "mat",
+    "everydayDataStructs" : "Data Structs",
+    "snippetToOODConcept" : "OOD",
+    "algorithmToBigO" : "Big O",
+    "generalProgrammingPrinciples" : "General"
+}
+
 technologies = ()
 
 """

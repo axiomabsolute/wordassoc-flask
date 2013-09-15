@@ -170,3 +170,10 @@ body {
   margin: 14px;
   padding: 8px 20px;
   display: inline-block; }
+
+.report-content #questionCountsByType {
+  display: inline-block;
+  float: left; }
+.report-content #percentCorrectByType {
+  display: inline-block;
+  float: right; }

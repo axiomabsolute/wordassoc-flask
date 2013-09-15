@@ -231,3 +231,16 @@ body {
     padding: 8px 20px;
     display: inline-block;
 }
+
+.report-content{ 
+
+    #questionCountsByType {
+        display: inline-block;
+        float: left;
+    }
+
+    #percentCorrectByType {
+        display: inline-block;
+        float: right;
+    }
+}

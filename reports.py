@@ -15,6 +15,16 @@ def calculateCorrectByCategory(answers):
     result = {questionType: len([x for x in answersByCategory[questionType] if x.correct])*1.0/len(answersByCategory[questionType])*1.0 for questionType in answersByCategory}
     return result
 
+def calculateCorrect(answers, nameMap):
+    answersByLabel = defaultdict(list)
+    for answer in answers:
+       if answer.question.questionType == "snippetToTech":
+            answersByLabel[nameMap[answer.question.correctAnswer]].append(answer)
+       else:
+            answersByLabel[nameMap[answer.question.questionType]].append(answer)
+    result = {questionType: len([x for x in answersByLabel[questionType] if x.correct])*1.0/len(answersByLabel[questionType])*1.0 for questionType in answersByLabel}
+    return result
+
 def getLeaderboard(games):
     result = defaultdict(lambda : -100)
     for game in games:
@@ -22,11 +32,11 @@ def getLeaderboard(games):
     result = [{"user": p, "score":result[p]} for p in result]
     return [x for x in reversed(sorted(result,key=lambda x: x["score"]))]
 
-def countQuestionsByType(answers):
+def countQuestionsByType(answers, nameMap):
     countsByType = defaultdict(lambda : 0)
     for answer in answers:
         if answer.question.questionType == "snippetToTech":
-            countsByType[answer.question.correctAnswer] += 1
+            countsByType[nameMap[answer.question.correctAnswer]] += 1
         else:
-            countsByType[answer.question.questionType] += 1
+            countsByType[nameMap[answer.question.questionType]] += 1
     return countsByType
