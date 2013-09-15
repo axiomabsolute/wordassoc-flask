@@ -51,8 +51,6 @@
         var colors = d3.scale.ordinal()
             .range(["042A3d", "#0d435d", "#3e8aae", "#634700", "#EdB013", "#F6c74c", "#9a2506", "#Ed4013", "#DD5646"]);
 
-        console.log(visualization_data);
-
         function renderPie(data, valueKey, labelKey, selector){
             var margin = {top: 40, right: 20, bottom: 20, left: 20};
 
@@ -109,8 +107,6 @@
                         .domain([0.0,1.0])
                         .range([0, width]);
 
-            console.log(data.map(function(d){return d[labelAccessor];}));
-
             var y = d3.scale.ordinal()
                         .domain(data.map(function(d) { return d[labelAccessor];}))
                         .rangeRoundBands([0, height], .2);
@@ -145,9 +141,6 @@
                 .attr("x", 10)
                 .style("fill", "#FFFFFF")
                 .text(function(d){ return d[labelAccessor]; });
-
-            console.log(y.rangeBand()/2)
-
 
             svg.append("g")
                 .attr("class", "x axis")

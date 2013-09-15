@@ -91,7 +91,7 @@ def result():
     return render_template('result.html', total_answers = total_answers, correct_answers = correct_answers,
             game_score=game.score, standing=standing, total_games=total_games,accuracyByTech=accuracyByTech,
             accuracyByCategory=accuracyByQuestionType, questionTableData=question_table_data, 
-            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, debugMode=True, visualization_data=json.dumps(visualization_data),
+            mapOfQuestionTypesToDisplayName=mapOfQuestionTypesToDisplayName, visualization_data=json.dumps(visualization_data),
             mapOfQuestionTypesToShortName=mapOfQuestionTypesToShortName, accuracyByLabel=accuracyByLabel)
 
 @app.route('/leaderboard')
