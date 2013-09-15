@@ -177,3 +177,6 @@ body {
 .report-content #percentCorrectByType {
   display: inline-block;
   float: right; }
+@media all and (orientation: portrait) {
+  .report-content #questionCountsByType, .report-content #percentCorrectByType {
+    float: left; } }

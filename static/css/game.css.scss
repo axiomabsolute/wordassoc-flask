@@ -234,7 +234,7 @@ body {
 
 .report-content{ 
 
-    #questionCountsByType {
+   #questionCountsByType {
         display: inline-block;
         float: left;
     }
@@ -243,4 +243,11 @@ body {
         display: inline-block;
         float: right;
     }
+
+    @media all and (orientation: portrait){
+        #questionCountsByType, #percentCorrectByType {
+            float: left;
+        }
+    }
+ 
 }
