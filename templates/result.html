@@ -49,7 +49,7 @@
         window.WordAssoc["visualization_data"] = visualization_data;
 
         var colors = d3.scale.ordinal()
-            .range(["042A3d", "#0d435d", "#3e8aae", "#634700", "#EdB013", "#F6c74c", "#9a2506", "#Ed4013", "#DD5646"]);
+            .range(["042A3d", "#0d435d", "#3e8aae", "#EC9801", "#EdB013", "#F6c74c", "#9a2506", "#Ed4013", "#580303", "#DD5646"]);
 
         function renderPie(data, valueKey, labelKey, selector){
             var margin = {top: 40, right: 20, bottom: 20, left: 20};
@@ -85,7 +85,7 @@
                 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
                 .attr("dy", ".35em")
                 .style("text-anchor","middle")
-                .style("fill","#FFFFFF")
+                .style("fill","#FFF")
                 .text(function(d) { return d.data[labelKey]; });
 
             svg.append("text")
@@ -139,7 +139,7 @@
                 .attr("dy", ".35em")
                 .attr("y", function(d){ return y(d[labelAccessor]) + (y.rangeBand()/2);})
                 .attr("x", 10)
-                .style("fill", "#FFFFFF")
+                .style("fill", "#FFF")
                 .text(function(d){ return d[labelAccessor]; });
 
             svg.append("g")
