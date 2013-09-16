@@ -47,7 +47,7 @@ The game is silly and simple, but we hope the resulting data can help give both 
 1. Navigate to localhost:5000
 
 # Setting up herokupostgres
-1. heroku addons:add heroku-postresql:dev
+1. heroku addons:add heroku-postgresql:dev
 1. heroku pg:promote `heroku_postgresql_color_url`  _Note: replace this with whatever "color" url they give you_
 
 # Cleaning out the database
