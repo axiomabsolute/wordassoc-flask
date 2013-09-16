@@ -82,7 +82,15 @@
                 .style("fill", function(d) { return colors(d.data[labelKey]); });
 
             g.append("text")
-                .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                .attr("transform", function(d) { 
+                        var medianAngle = (((d.endAngle-d.startAngle)/2 + d.startAngle)*180/Math.PI);
+                        if (medianAngle > 180) {
+                            return "translate(" + arc.centroid(d) + ")rotate(" + ((((d.endAngle-d.startAngle)/2 + d.startAngle)*180/Math.PI)+90) + ")"; 
+                        } else {
+                            return "translate(" + arc.centroid(d) + ")rotate(" + ((((d.endAngle-d.startAngle)/2 + d.startAngle)*180/Math.PI)-90) + ")"; 
+                        }
+                    }
+                 )
                 .attr("dy", ".35em")
                 .style("text-anchor","middle")
                 .style("fill","#FFF")
