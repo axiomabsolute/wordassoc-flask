@@ -81,6 +81,7 @@ mapOfQuestionTypesToShortName = {
     "java": "java",
     "python": "py",
     "javascript": "js",
+    "c#": "c#",
     "c/c++": "cpp",
     "matlab": "mat",
     "everydayDataStructs" : "Data Structs",
