@@ -98,6 +98,10 @@ def result():
 def leaderboard():
     return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))
 
+@app.route('/leaderboard2')
+def leaderboard2():
+    return render_template('leaderboard.html', leaderboard=getLeaderboard(Game.query.all()))
+
 @app.route('/result_debug')
 def result_debug():
     """

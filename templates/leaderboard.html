@@ -9,6 +9,9 @@
                     <th>Rank</th>
                     <th>User</th>
                     <th>Score</th>
+                    {% if leaderboard and "weightedScore" in leaderboard[0].keys() %}
+                    <th>Weighted Score</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +20,11 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ entry["user"].email }}</td>
                     <td>{{ entry["score"] }}</td>
+                    {% if leaderboard and "weightedScore" in entry.keys() %}
+                    <td>
+                        {{ entry["weightedScore"] }}
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>

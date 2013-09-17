@@ -1,4 +1,5 @@
 from collections import defaultdict
+from Models import Answer
 # Report methods
 def calculateAccuracyByTech(answers):
     techAnswers = [answer for answer in answers if answer.question.questionType == "snippetToTech"]
@@ -27,9 +28,21 @@ def calculateCorrect(answers, nameMap):
 
 def getLeaderboard(games):
     result = defaultdict(lambda : -100)
+    weightedresult = defaultdict(lambda : -100)
+    correctCount = defaultdict(lambda: 0)
+    totalCount = defaultdict(lambda: 0)
+    answers = Answer.query.all()
+    for answer in answers:
+        totalCount[answer.question.text] = totalCount[answer.question.text] + 1
+        if answer.correct:
+            correctCount[answer.question.text] = correctCount[answer.question.text] + 1
+    weights = {q:1.5-(correctCount[q]*1.0/(totalCount[q]*1.0)) for q in totalCount.keys()}
+    weightedScores = {game.id: sum(map(lambda x: weights[x.question.text] if x.correct else (0.0-0.25), game.answers)) for game in games }
+    print(weightedScores)
     for game in games:
         result[game.player] = max(result[game.player], game.score)
-    result = [{"user": p, "score":result[p]} for p in result]
+        weightedresult[game.player] = max(result[game.player], weightedScores[game.id])
+    result = [{"user": p, "score":result[p], "weightedScore":weightedresult[p]} for p in result]
     return [x for x in reversed(sorted(result,key=lambda x: x["score"]))]
 
 def countQuestionsByType(answers, nameMap):
